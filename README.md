@@ -1,2 +1,25 @@
-# voting_patterns
+# Voting patterns
 2024 repository for exam in Social and Cultural Dynamics
+
+## Purpose
+This repository serves a collection of data and code for the 2024 exam in Social and Cultural Dynamics on the bachelors degree of Cognitive Science.
+The aim of the exam is to examine the patterns of voters, specifically in the country of Denmark.
+
+Interesting parameters to examine include:
+- **Limiting voting age range eg. 18-80**
+- **Lowering voting age to eg. 16**
+- **Raising voting age to eg. 25**
+
+## Planned frameworks and methods
+In terms of framework and methods, Agent Based Models (ABM) are considered, along with, if the scope of the project allows it, Network Models.
+
+In terms of data, I wish to use voting data from the past elections and school elections. Perhaps, gathering data using a survey on reasons for voting and voting pattern.
+This should include age, occupation, area of residency (Municipality or region) etc.
+
+## Assumptions
+The assumptions of this project include: 
+- That every agent acts according to a set value system, that directly influences their voting patterns.
+- That younger voters/new voters will be more extreme in their voting patterns and value systems.
+
+## Perceived challenges
+
