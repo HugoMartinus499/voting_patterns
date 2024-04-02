@@ -23,3 +23,9 @@ The assumptions of this project include:
 
 ## Perceived challenges
 
+
+
+### ABM Modelling packages
+- pyabm: https://pypi.org/project/pyabm/0.3.1/#description
+- AgentPy: https://agentpy.readthedocs.io/en/latest/
+- Mesa: https://github.com/projectmesa/mesa
