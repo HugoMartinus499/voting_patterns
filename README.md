@@ -31,3 +31,6 @@ The assumptions of this project include:
 - pyabm: https://pypi.org/project/pyabm/0.3.1/#description
 - AgentPy: https://agentpy.readthedocs.io/en/latest/
 - Mesa: https://github.com/projectmesa/mesa
+
+### Videos for building an ABM
+Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
