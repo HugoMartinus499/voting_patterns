@@ -22,7 +22,9 @@ The assumptions of this project include:
 - That younger voters/new voters will be more extreme in their voting patterns and value systems.
 
 ## Perceived challenges
-
+- Lack of expertise in ABM
+- Data (Lack of data, data for only Denmark)
+- Causal explanatory power
 
 
 ### ABM Modelling packages
