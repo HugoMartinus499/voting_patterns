@@ -22,10 +22,15 @@ The assumptions of this project include:
 - That younger voters/new voters will be more extreme in their voting patterns and value systems.
 
 ## Perceived challenges
-
+- Lack of expertise in ABM
+- Data (Lack of data, data for only Denmark)
+- Causal explanatory power
 
 
 ### ABM Modelling packages
 - pyabm: https://pypi.org/project/pyabm/0.3.1/#description
 - AgentPy: https://agentpy.readthedocs.io/en/latest/
 - Mesa: https://github.com/projectmesa/mesa
+
+### Videos for building an ABM
+Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
