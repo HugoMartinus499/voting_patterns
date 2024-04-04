@@ -26,11 +26,14 @@ The assumptions of this project include:
 - Data (Lack of data, data for only Denmark)
 - Causal explanatory power
 
-
-### ABM Modelling packages
+### ABM Modelling languages + packages
+**Python**
 - pyabm: https://pypi.org/project/pyabm/0.3.1/#description
 - AgentPy: https://agentpy.readthedocs.io/en/latest/
 - Mesa: https://github.com/projectmesa/mesa
+**Netlogo**
+- Download Netlogo: https://ccl.northwestern.edu/netlogo/
+All packages and models are included: https://ccl.northwestern.edu/netlogo/models/
 
 ### Videos for building an ABM
 Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
