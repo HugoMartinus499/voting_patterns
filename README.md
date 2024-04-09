@@ -20,6 +20,7 @@ This should include age, occupation, area of residency (Municipality or region) 
 The assumptions of this project include: 
 - That every agent acts according to a set value system, that directly influences their voting patterns.
 - That younger voters/new voters will be more extreme in their voting patterns and value systems.
+- Older voters/experienced voters will be more set in their ways and less prone to influence and will consequently vote similarly each time
 
 ## Perceived challenges
 - Lack of expertise in ABM
