@@ -1,4 +1,75 @@
+patches-own
+[
+  vote   ;; my vote (0 or 1)
+  total  ;; sum of votes around me
+]
 
+globals [
+  change-vote-if-tied?
+  award-close-calls-to-loser?
+]
+
+to setup
+  clear-all
+  ask patches [
+    set vote determine-vote
+    recolor-patch
+  ]
+  reset-ticks
+end
+
+to-report determine-vote
+  let vote-value 0
+  let age random 100 ; Assuming age ranges from 0 to 99
+
+  ifelse age < 18 [
+    ifelse random-float 100 < 31 [
+      set vote-value 1
+    ] [
+      set vote-value random 2
+    ]
+  ] [
+    set vote-value random 2
+  ]
+
+  report vote-value
+end
+
+to go
+  ;; keep track of whether any patch has changed their vote
+  let any-votes-changed? false
+  ask patches
+    [ set total (sum [vote] of neighbors) ]
+  ;; use two ask patches blocks so all patches compute "total"
+  ;; before any patches change their votes
+  ask patches
+    [ let previous-vote vote
+      if total > 5 [ set vote 1 ]
+      if total < 3 [ set vote 0 ]
+      if total = 4
+        [ if change-vote-if-tied?
+          [ set vote (1 - vote) ] ]
+      if total = 5
+        [ ifelse award-close-calls-to-loser?
+          [ set vote 0 ]
+          [ set vote 1 ] ]
+      if total = 3
+        [ ifelse award-close-calls-to-loser?
+          [ set vote 1 ]
+          [ set vote 0 ] ]
+      if vote != previous-vote
+        [ set any-votes-changed? true ]
+      recolor-patch ]
+  ;; if the votes have stabilized, we stop the simulation
+  if not any-votes-changed? [ stop ]
+  tick
+end
+
+to recolor-patch  ;; patch procedure
+  ifelse vote = 0
+    [ set pcolor green ]
+    [ set pcolor blue ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -26,6 +97,40 @@ GRAPHICS-WINDOW
 1
 ticks
 30.0
+
+BUTTON
+106
+30
+169
+63
+NIL
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
+
+BUTTON
+30
+29
+93
+62
+setup
+setup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
