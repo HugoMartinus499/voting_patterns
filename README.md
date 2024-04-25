@@ -40,3 +40,9 @@ All packages and models are included: https://ccl.northwestern.edu/netlogo/model
 
 ### Videos for building an ABM
 Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
+
+## ToDo
+- Code in voting pattern variables and influences
+- set changable age parameter
+- set patches to be colored by each vote option
+- Make sure model works as expected
