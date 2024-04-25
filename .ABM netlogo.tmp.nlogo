@@ -111,7 +111,7 @@ to-report determine-vote
                           ifelse random-probability <= 88.33 {
                             set vote-value 12
                           } [
-                            ifelse random-probability <= 92 {
+                            ifelse random-probability <= 9 {
                               set vote-value 13
                             } [
                               set vote-value 14
