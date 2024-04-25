@@ -4,6 +4,11 @@ patches-own
   total  ;; sum of votes around me
 ]
 
+;; TODO:
+;; set voting age to a scale
+;; code in influences on vote
+;; set patch colors for each vote option
+;; Make sure model works as expected
 
 to setup
   clear-all
