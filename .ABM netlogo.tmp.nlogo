@@ -168,23 +168,6 @@ to go
   tick
 end
 
-to recolor-patch  ;; patch procedure
-  ;; Assign different colors based on the value of the vote variable
-  if vote = 1 [ set pcolor red ]
-  if vote = 2 [ set pcolor orange ]
-  if vote = 3 [ set pcolor yellow ]
-  if vote = 4 [ set pcolor green ]
-  if vote = 5 [ set pcolor cyan ]
-  if vote = 6 [ set pcolor sky ]
-  if vote = 7 [ set pcolor blue ]
-  if vote = 8 [ set pcolor violet ]
-  if vote = 9 [ set pcolor magenta ]
-  if vote = 10 [ set pcolor brown ]
-  if vote = 11 [ set pcolor black ]
-  if vote = 12 [ set pcolor gray ]
-  if vote = 13 [ set pcolor white ]
-  if vote = 14 [ set pcolor pink ]
-end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
