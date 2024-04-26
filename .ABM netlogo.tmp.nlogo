@@ -7,7 +7,6 @@ patches-own
 ;; TODO:
 ;; set voting age to a scale
 ;; code in influences on vote
-;; set patch colors for each vote option
 ;; Make sure model works as expected
 
 to setup
@@ -21,119 +20,9 @@ end
 
 to-report determine-vote
   let vote-value 0
-  let age random 100 ; Assuming age ranges from 0 to 99
+  let age random 101 ; Assuming age ranges from 0 to 100
 
-  ifelse age < 18 [
-    let random-probability random-float 100
-    ifelse random-probability <= 7 [
-      set vote-value 1 ; Enhedslisten
-    ] [
-      ifelse random-probability <= 12.6 [
-        set vote-value 2 ; SF
-      ] [
-        ifelse random-probability <= 12.61 {
-          set vote-value 3 ; Frie Grønne
-        } [
-          ifelse random-probability <= 14.41 {
-            set vote-value 4 ; Alternativet
-          } [
-            ifelse random-probability <= 30.41 {
-              set vote-value 5 ; Socialdemokraterne
-            } [
-              ifelse random-probability <= 39.11 {
-                set vote-value 6 ; Radikale
-              } [
-                ifelse random-probability <= 43.81 {
-                  set vote-value 7 ; Moderaterne
-                } [
-                  ifelse random-probability <= 49.01 {
-                    set vote-value 8 ; DF
-                  } [
-                    ifelse random-probability <= 49.02 {
-                      set vote-value 9 ; KD
-                    } [
-                      ifelse random-probability <= 58.82 {
-                        set vote-value 10 ; Venstre
-                      } [
-                        ifelse random-probability <= 61.82 {
-                          set vote-value 11 ; DD
-                        } [
-                          ifelse random-probability <= 69.82 {
-                            set vote-value 12 ; Konservative
-                          } [
-                            ifelse random-probability <= 69.83 {
-                              set vote-value 13 ; NB
-                            } [
-                              set vote-value 14 ; LA
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ] ifelse age >= 18 [
-    let random-probability random-float 100
-    ifelse random-probability <= 5.13 [
-      set vote-value 1
-    ] [
-      ifelse random-probability <= 13.43 [
-        set vote-value 2
-      ] [
-        ifelse random-probability <= 14.33 {
-          set vote-value 3
-        } [
-          ifelse random-probability <= 17.66 {
-            set vote-value 4
-          } [
-            ifelse random-probability <= 45.16 {
-              set vote-value 5
-            } [
-              ifelse random-probability <= 48.95 {
-                set vote-value 6
-              } [
-                ifelse random-probability <= 58.22 {
-                  set vote-value 7
-                } [
-                  ifelse random-probability <= 60.86 {
-                    set vote-value 8
-                  } [
-                    ifelse random-probability <= 61.38 {
-                      set vote-value 9
-                    } [
-                      ifelse random-probability <= 74.7 {
-                        set vote-value 10
-                      } [
-                        ifelse random-probability <= 82.82 {
-                          set vote-value 11
-                        } [
-                          ifelse random-probability <= 88.33 {
-                            set vote-value 12
-                          } [
-                            ifelse random-probability <= 92 {
-                              set vote-value 13
-                            } [
-                              set vote-value 14
-                            ]
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
+
 
   report vote-value
 end
@@ -168,6 +57,23 @@ to go
   tick
 end
 
+to recolor-patch  ;; patch procedure
+  ;; Assign different colors based on the value of the vote variable
+  if vote = 1 [ set pcolor red ]
+  if vote = 2 [ set pcolor orange ]
+  if vote = 3 [ set pcolor yellow ]
+  if vote = 4 [ set pcolor green ]
+  if vote = 5 [ set pcolor cyan ]
+  if vote = 6 [ set pcolor sky ]
+  if vote = 7 [ set pcolor blue ]
+  if vote = 8 [ set pcolor violet ]
+  if vote = 9 [ set pcolor magenta ]
+  if vote = 10 [ set pcolor brown ]
+  if vote = 11 [ set pcolor black ]
+  if vote = 12 [ set pcolor gray ]
+  if vote = 13 [ set pcolor white ]
+  if vote = 14 [ set pcolor pink ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -273,6 +179,36 @@ count patches with\n  [ pcolor = green ]
 0
 1
 11
+
+SLIDER
+11
+280
+183
+313
+min-age
+min-age
+0
+100
+50.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+324
+182
+357
+max-age
+max-age
+0
+100
+50.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
