@@ -278,7 +278,7 @@ min-age
 min-age
 0
 100
-16.0
+25.0
 1
 1
 NIL
@@ -293,7 +293,7 @@ max-age
 max-age
 0
 100
-18.0
+80.0
 1
 1
 NIL
@@ -306,7 +306,7 @@ SWITCH
 114
 change-vote-if-tied?
 change-vote-if-tied?
-0
+1
 1
 -1000
 
@@ -317,7 +317,7 @@ SWITCH
 157
 award-close-calls-to-loser?
 award-close-calls-to-loser?
-0
+1
 1
 -1000
 
