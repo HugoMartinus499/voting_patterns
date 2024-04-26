@@ -9,8 +9,15 @@ patches-own
 ;; code in influences on vote
 ;; Make sure model works as expected
 
+globals [
+  min-voting-age
+  max-voting-age
+]
+
 to setup
   clear-all
+  set min-voting-age 18 ; Default minimum voting age
+  set max-voting-age 100 ; Default maximum voting age
   ask patches [
     set vote determine-vote
     recolor-patch
@@ -20,7 +27,7 @@ end
 
 to-report determine-vote
   let vote-value 0
-  let age random 101 ; Assuming age ranges from 0 to 100
+  let age random (max-voting-age - min-voting-age + 1) + min-voting-age
 
   ifelse age < 18 [
   let random-probability random-float 100
@@ -184,6 +191,22 @@ to recolor-patch  ;; patch procedure
   if vote = 13 [ set pcolor white ]
   if vote = 14 [ set pcolor pink ]
 end
+
+to set-min-voting-age [new-age]
+  set min-voting-age new-age
+  ask patches [
+    set vote determine-vote
+    recolor-patch
+  ]
+end
+
+to set-max-voting-age [new-age]
+  set max-voting-age new-age
+  ask patches [
+    set vote determine-vote
+    recolor-patch
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -246,50 +269,6 @@ NIL
 NIL
 1
 
-SWITCH
-27
-105
-196
-138
-change-vote-if-tied?
-change-vote-if-tied?
-0
-1
--1000
-
-MONITOR
-12
-215
-98
-260
-blue patches
-count patches with\n  [ pcolor = blue ]
-0
-1
-11
-
-SWITCH
-24
-148
-232
-181
-award-close-calls-to-loser?
-award-close-calls-to-loser?
-0
-1
--1000
-
-MONITOR
-124
-216
-218
-261
-green patches
-count patches with\n  [ pcolor = green ]
-0
-1
-11
-
 SLIDER
 11
 280
@@ -299,7 +278,7 @@ min-age
 min-age
 0
 100
-18.0
+16.0
 1
 1
 NIL
@@ -314,11 +293,33 @@ max-age
 max-age
 0
 100
-100.0
+18.0
 1
 1
 NIL
 HORIZONTAL
+
+SWITCH
+17
+81
+186
+114
+change-vote-if-tied?
+change-vote-if-tied?
+0
+1
+-1000
+
+SWITCH
+7
+124
+215
+157
+award-close-calls-to-loser?
+award-close-calls-to-loser?
+0
+1
+-1000
 
 @#$#@#$#@
 ## WHAT IS IT?

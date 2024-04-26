@@ -9,8 +9,15 @@ patches-own
 ;; code in influences on vote
 ;; Make sure model works as expected
 
+globals [
+  min-voting-age
+  max-voting-age
+]
+
 to setup
   clear-all
+  set min-voting-age 18 ; Default minimum voting age
+  set max-voting-age 100 ; Default maximum voting age
   ask patches [
     set vote determine-vote
     recolor-patch
@@ -20,9 +27,119 @@ end
 
 to-report determine-vote
   let vote-value 0
-  let age random 101 ; Assuming age ranges from 0 to 100
+  let age random (max-voting-age - min-voting-age + 1) + min-voting-age
 
-
+  ifelse age < 18 [
+  let random-probability random-float 100
+  ifelse random-probability <= 7 [
+    set vote-value 1 ; Enhedslisten
+  ] [
+    ifelse random-probability <= 12.6 [
+      set vote-value 2 ; SF
+    ] [
+      ifelse random-probability <= 12.61 [
+        set vote-value 3 ; Frie Grønne
+      ] [
+        ifelse random-probability <= 14.41 [
+          set vote-value 4 ; Alternativet
+        ] [
+          ifelse random-probability <= 30.41 [
+            set vote-value 5 ; Socialdemokraterne
+          ] [
+            ifelse random-probability <= 39.11 [
+              set vote-value 6 ; Radikale
+            ] [
+              ifelse random-probability <= 43.81 [
+                set vote-value 7 ; Moderaterne
+              ] [
+                ifelse random-probability <= 49.01 [
+                  set vote-value 8 ; DF
+                ] [
+                  ifelse random-probability <= 49.02 [
+                    set vote-value 9 ; KD
+                  ] [
+                    ifelse random-probability <= 58.82 [
+                      set vote-value 10 ; Venstre
+                    ] [
+                      ifelse random-probability <= 61.82 [
+                        set vote-value 11 ; DD
+                      ] [
+                        ifelse random-probability <= 69.82 [
+                          set vote-value 12 ; Konservative
+                        ] [
+                          ifelse random-probability <= 69.83 [
+                            set vote-value 13 ; NB
+                          ] [
+                            set vote-value 14 ; LA
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+] [
+  let random-probability random-float 100
+  ifelse random-probability <= 5.13 [
+    set vote-value 1
+  ] [
+    ifelse random-probability <= 13.43 [
+      set vote-value 2
+    ] [
+      ifelse random-probability <= 14.33 [
+        set vote-value 3
+      ] [
+        ifelse random-probability <= 17.66 [
+          set vote-value 4
+        ] [
+          ifelse random-probability <= 45.16 [
+            set vote-value 5
+          ] [
+            ifelse random-probability <= 48.95 [
+              set vote-value 6
+            ] [
+              ifelse random-probability <= 58.22 [
+                set vote-value 7
+              ] [
+                ifelse random-probability <= 60.86 [
+                  set vote-value 8
+                ] [
+                  ifelse random-probability <= 61.38 [
+                    set vote-value 9
+                  ] [
+                    ifelse random-probability <= 74.7 [
+                      set vote-value 10
+                    ] [
+                      ifelse random-probability <= 82.82 [
+                        set vote-value 11
+                      ] [
+                        ifelse random-probability <= 88.33 [
+                          set vote-value 12
+                        ] [
+                          ifelse random-probability <= 92 [
+                            set vote-value 13
+                          ] [
+                            set vote-value 14
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+]
 
   report vote-value
 end
@@ -73,6 +190,22 @@ to recolor-patch  ;; patch procedure
   if vote = 12 [ set pcolor gray ]
   if vote = 13 [ set pcolor white ]
   if vote = 14 [ set pcolor pink ]
+end
+
+to set-min-voting-age [new-age]
+  set min-voting-age new-age
+  ask patches [
+    set vote determine-vote
+    recolor-patch
+  ]
+end
+
+to set-max-voting-age [new-age]
+  set max-voting-age new-age
+  ask patches [
+    set vote determine-vote
+    recolor-patch
+  ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -136,50 +269,6 @@ NIL
 NIL
 1
 
-SWITCH
-27
-105
-196
-138
-change-vote-if-tied?
-change-vote-if-tied?
-0
-1
--1000
-
-MONITOR
-12
-215
-98
-260
-blue patches
-count patches with\n  [ pcolor = blue ]
-0
-1
-11
-
-SWITCH
-24
-148
-232
-181
-award-close-calls-to-loser?
-award-close-calls-to-loser?
-0
-1
--1000
-
-MONITOR
-124
-216
-218
-261
-green patches
-count patches with\n  [ pcolor = green ]
-0
-1
-11
-
 SLIDER
 11
 280
@@ -189,7 +278,7 @@ min-age
 min-age
 0
 100
-50.0
+16.0
 1
 1
 NIL
@@ -204,11 +293,33 @@ max-age
 max-age
 0
 100
-50.0
+18.0
 1
 1
 NIL
 HORIZONTAL
+
+SWITCH
+17
+81
+186
+114
+change-vote-if-tied?
+change-vote-if-tied?
+0
+1
+-1000
+
+SWITCH
+7
+124
+215
+157
+award-close-calls-to-loser?
+award-close-calls-to-loser?
+0
+1
+-1000
 
 @#$#@#$#@
 ## WHAT IS IT?
