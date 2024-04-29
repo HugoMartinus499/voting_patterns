@@ -16,7 +16,7 @@ globals [
 
 to setup
   clear-all
-  set min-voting-age 16 ; Default minimum voting age
+  set min-voting-age 1 ; Default minimum voting age
   set max-voting-age 100 ; Default maximum voting age
   ask patches [
     set vote determine-vote
