@@ -1,13 +1,9 @@
 turtles-own
 [
-  vote   ;; my vote (1-14)
-  total  ;; sum of votes around me
+  vote    ;; my vote (1-14)
+  total   ;; sum of votes around me
 ]
-
-;; TODO:
-;; set voting age to a scale
-;; code in influences on vote
-;; Make sure model works as expected
+patches-own[]
 
 globals [
   min-voting-age
@@ -16,6 +12,7 @@ globals [
 
 to setup
   clear-all
+  set-default-shape turtles "person"
   set min-voting-age 16 ; Default minimum voting age
   set max-voting-age 100 ; Default maximum voting age
 
@@ -184,22 +181,7 @@ to move  ;; turtle procedure
   lt random 40
 end
 
-;to communicate  ;; turtle procedure
-  ;let other-turtle one-of other turtles-here
-  ;if other-turtle != nobody [
-    ;ifelse [vote] of other-turtle = vote [
-      ; If the encountered turtle has the same vote, keep the current vote
-      ;set vote vote
-    ;] [
-      ;if [vote] of other-turtle > vote [
-        ; If the encountered turtle has a higher vote, add 1 to the current vote
-        ;set vote vote + 1
-      ;] [
-        ; If the encountered turtle has a lower vote, subtract 1 from the current vote
-        ;set vote vote - 1
-      ;]
-    ;]
-  ;]
+;to communicate
 ;end
 
 to recolor  ;; turtle procedure
@@ -306,7 +288,7 @@ min-age
 min-age
 0
 100
-15.0
+16.0
 1
 1
 NIL
@@ -334,7 +316,7 @@ SWITCH
 114
 change-vote-if-tied?
 change-vote-if-tied?
-0
+1
 1
 -1000
 
@@ -345,7 +327,7 @@ SWITCH
 157
 award-close-calls-to-loser?
 award-close-calls-to-loser?
-0
+1
 1
 -1000
 

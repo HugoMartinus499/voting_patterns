@@ -1,13 +1,9 @@
 turtles-own
 [
-  vote   ;; my vote (1-14)
-  total  ;; sum of votes around me
+  vote    ;; my vote (1-14)
+  total   ;; sum of votes around me
 ]
-
-;; TODO:
-;; set voting age to a scale
-;; code in influences on vote
-;; Make sure model works as expected
+patches-own[]
 
 globals [
   min-voting-age
@@ -16,6 +12,7 @@ globals [
 
 to setup
   clear-all
+  set-default-shape turtles "person"
   set min-voting-age 16 ; Default minimum voting age
   set max-voting-age 100 ; Default maximum voting age
 
@@ -149,7 +146,7 @@ to go
   ;; keep track of whether any turtle has changed their vote
   let any-votes-changed? false
   ask turtles [ move ]
-  ask turtles [communicate]
+  ;ask turtles [communicate]
   ask turtles [
     set total sum [vote] of turtles-on neighbors
     let previous-vote vote
@@ -184,23 +181,8 @@ to move  ;; turtle procedure
   lt random 40
 end
 
-;to communicate  ;; turtle procedure
-  let other-turtle one-of other turtles-here
-  if other-turtle != nobody [
-    ifelse [vote] of other-turtle = vote [
-      ; If the encountered turtle has the same vote, keep the current vote
-      set vote vote
-    ] [
-      if [vote] of other-turtle > vote [
-        ; If the encountered turtle has a higher vote, add 1 to the current vote
-        set vote vote + 1
-      ] [
-        ; If the encountered turtle has a lower vote, subtract 1 from the current vote
-        set vote vote - 1
-      ]
-    ]
-  ]
-end
+;to communicate
+;end
 
 to recolor  ;; turtle procedure
   ;; Assign different colors based on the value of the vote variable
@@ -306,7 +288,7 @@ min-age
 min-age
 0
 100
-15.0
+16.0
 1
 1
 NIL
@@ -348,6 +330,24 @@ award-close-calls-to-loser?
 1
 1
 -1000
+
+PLOT
+19
+173
+219
+323
+plot 1
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot count turtles"
 
 @#$#@#$#@
 ## WHAT IS IT?
