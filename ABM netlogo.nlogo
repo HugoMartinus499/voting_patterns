@@ -1,6 +1,6 @@
-patches-own
+turtles-own
 [
-  vote   ;; my vote (0 or 1)
+  vote   ;; my vote (1-14)
   total  ;; sum of votes around me
 ]
 
@@ -18,17 +18,18 @@ to setup
   clear-all
   set min-voting-age 16 ; Default minimum voting age
   set max-voting-age 100 ; Default maximum voting age
-  ask patches [
-    set vote determine-vote
-    recolor-patch
+
+  create-turtles 1000 [
+    let age random (max-voting-age - min-voting-age + 1) + min-voting-age  ; Random age between min-voting-age and max-voting-age
+    set vote determine-vote age ; Determine initial vote
+    setxy random-xcor random-ycor
   ]
+  ask turtles [ recolor ]
   reset-ticks
 end
 
-to-report determine-vote
+to-report determine-vote [age]
   let vote-value 0
-  let age random (max-voting-age - min-voting-age + 1) + min-voting-age
-
   ifelse age < 18 [
   let random-probability random-float 100
   ifelse random-probability <= 7 [
@@ -145,66 +146,93 @@ to-report determine-vote
 end
 
 to go
-  ;; keep track of whether any patch has changed their vote
+  ;; keep track of whether any turtle has changed their vote
   let any-votes-changed? false
-  ask patches
-    [ set total (sum [vote] of neighbors) ]
-  ;; use two ask patches blocks so all patches compute "total"
-  ;; before any patches change their votes
-  ask patches
-    [ let previous-vote vote
-      if total > 5 [ set vote 1 ]
-      if total < 3 [ set vote 0 ]
-      if total = 4
-        [ if change-vote-if-tied?
-          [ set vote (1 - vote) ] ]
-      if total = 5
-        [ ifelse award-close-calls-to-loser?
-          [ set vote 0 ]
-          [ set vote 1 ] ]
-      if total = 3
-        [ ifelse award-close-calls-to-loser?
-          [ set vote 1 ]
-          [ set vote 0 ] ]
-      if vote != previous-vote
-        [ set any-votes-changed? true ]
-      recolor-patch ]
+  ask turtles [ move ]
+  ;ask turtles [communicate]
+  ask turtles [
+    set total sum [vote] of turtles-on neighbors
+    let previous-vote vote
+    if total > 5 [ set vote 1 ]
+    if total < 3 [ set vote 0 ]
+    if total = 4
+      [ if change-vote-if-tied?
+        [ set vote (1 - vote) ] ]
+    if total = 5
+      [ ifelse award-close-calls-to-loser?
+        [ set vote 0 ]
+        [ set vote 1 ] ]
+    if total = 3
+      [ ifelse award-close-calls-to-loser?
+        [ set vote 1 ]
+        [ set vote 0 ] ]
+    if vote != previous-vote
+      [ set any-votes-changed? true ]
+    recolor
+  ]
   ;; if the votes have stabilized, we stop the simulation
   if not any-votes-changed? [ stop ]
   tick
 end
 
-to recolor-patch  ;; patch procedure
+;; move randomly
+to move  ;; turtle procedure
+  fd random 4
+  ;; turn a random amount between -40 and 40 degrees,
+  ;; keeping the average turn at 0
+  rt random 40
+  lt random 40
+end
+
+;to communicate  ;; turtle procedure
+  ;let other-turtle one-of other turtles-here
+  ;if other-turtle != nobody [
+    ;ifelse [vote] of other-turtle = vote [
+      ; If the encountered turtle has the same vote, keep the current vote
+      ;set vote vote
+    ;] [
+      ;if [vote] of other-turtle > vote [
+        ; If the encountered turtle has a higher vote, add 1 to the current vote
+        ;set vote vote + 1
+      ;] [
+        ; If the encountered turtle has a lower vote, subtract 1 from the current vote
+        ;set vote vote - 1
+      ;]
+    ;]
+  ;]
+;end
+
+to recolor  ;; turtle procedure
   ;; Assign different colors based on the value of the vote variable
-  if vote = 1 [ set pcolor red ]
-  if vote = 2 [ set pcolor orange ]
-  if vote = 3 [ set pcolor yellow ]
-  if vote = 4 [ set pcolor green ]
-  if vote = 5 [ set pcolor cyan ]
-  if vote = 6 [ set pcolor sky ]
-  if vote = 7 [ set pcolor blue ]
-  if vote = 8 [ set pcolor violet ]
-  if vote = 9 [ set pcolor magenta ]
-  if vote = 10 [ set pcolor brown ]
-  if vote = 11 [ set pcolor black ]
-  if vote = 12 [ set pcolor gray ]
-  if vote = 13 [ set pcolor white ]
-  if vote = 14 [ set pcolor pink ]
+  if vote = 1 [ set color red ]
+  if vote = 2 [ set color orange ]
+  if vote = 3 [ set color yellow ]
+  if vote = 4 [ set color green ]
+  if vote = 5 [ set color cyan ]
+  if vote = 6 [ set color sky ]
+  if vote = 7 [ set color blue ]
+  if vote = 8 [ set color violet ]
+  if vote = 9 [ set color magenta ]
+  if vote = 10 [ set color brown ]
+  if vote = 11 [ set color black ]
+  if vote = 12 [ set color gray ]
+  if vote = 13 [ set color white ]
+  if vote = 14 [ set color pink ]
 end
 
 to set-min-voting-age [new-age]
   set min-voting-age new-age
-  ask patches [
-    set vote determine-vote
-    recolor-patch
+  ask turtles [
+    set vote determine-vote new-age
+    recolor
   ]
 end
 
 to set-max-voting-age [new-age]
   set max-voting-age new-age
-  ask patches [
-    set vote determine-vote
-    recolor-patch
+  ask turtles [
+    set vote determine-vote new-age
+    recolor
   ]
 end
 @#$#@#$#@
@@ -306,7 +334,7 @@ SWITCH
 114
 change-vote-if-tied?
 change-vote-if-tied?
-1
+0
 1
 -1000
 
@@ -317,7 +345,7 @@ SWITCH
 157
 award-close-calls-to-loser?
 award-close-calls-to-loser?
-1
+0
 1
 -1000
 
