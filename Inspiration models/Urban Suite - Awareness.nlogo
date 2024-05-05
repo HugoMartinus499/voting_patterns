@@ -191,7 +191,7 @@ people
 people
 0
 300
-60.0
+200.0
 10
 1
 NIL
@@ -238,7 +238,7 @@ centers
 centers
 0
 100
-20.0
+50.0
 5
 1
 NIL
@@ -326,7 +326,7 @@ non-usage-limit
 non-usage-limit
 0
 500
-100.0
+500.0
 5
 1
 ticks

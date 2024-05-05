@@ -1,7 +1,6 @@
 turtles-own
 [
   vote    ;; my vote (1-14)
-  total   ;; sum of votes around me
 ]
 patches-own[ non-usage ]
 
@@ -29,6 +28,15 @@ to setup
   ]
 
   reset-ticks
+end
+
+;; move randomly
+to move  ;; turtle procedure
+  fd random 4
+  ;; turn a random amount between -40 and 40 degrees,
+  ;; keeping the average turn at 0
+  rt random 40
+  lt random 40
 end
 
 to-report determine-vote [age]
@@ -254,16 +262,8 @@ to go
     if non-usage > non-usage-limit [ set pcolor black ]
   ]
 
- tick
-end
-
-;; move randomly
-to move  ;; turtle procedure
-  fd random 4
-  ;; turn a random amount between -40 and 40 degrees,
-  ;; keeping the average turn at 0
-  rt random 40
-  lt random 40
+  ;; Advance the tick counter
+  tick
 end
 
 
