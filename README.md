@@ -43,6 +43,7 @@ Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
 
 ## ToDo
 - [ ] Look into workings of urban suite model
-- [ ] set some patches as information center to change vote
-- [x] set turtles to be colored by each vote option 
+- [x] set some patches as information center to change vote
+- [x] set turtles to be colored by each vote option
+- [ ] fix to go and look into why tick cannot be used there
 - [ ] Make sure model works as expected
