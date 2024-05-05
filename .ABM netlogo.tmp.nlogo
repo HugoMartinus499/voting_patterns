@@ -5,7 +5,6 @@ turtles-own
 ]
 patches-own[ non-usage ]
 
-
 to setup
   clear-all
   set-default-shape turtles "person"
@@ -19,6 +18,15 @@ to setup
   ]
   ask turtles [ recolor ]
 
+  ask n-of centers patches [
+    set pcolor green
+    set non-usage 0
+  ]
+
+  ask n-of centers patches [
+    set pcolor red
+    set non-usage 0
+  ]
 
   reset-ticks
 end
@@ -198,33 +206,55 @@ end
 
 
 to go
-  ;; keep track of whether any turtle has changed their vote
-  let any-votes-changed? false
   ask turtles [ move ]
-  ;ask turtles [communicate]
   ask turtles [
-    set total sum [vote] of turtles-on neighbors
-    let previous-vote vote
-    if total > 5 [ set vote 1 ]
-    if total < 3 [ set vote 0 ]
-    if total = 4
-      [ if change-vote-if-tied?
-        [ set vote (1 - vote) ] ]
-    if total = 5
-      [ ifelse award-close-calls-to-loser?
-        [ set vote 0 ]
-        [ set vote 1 ] ]
-    if total = 3
-      [ ifelse award-close-calls-to-loser?
-        [ set vote 1 ]
-        [ set vote 0 ] ]
-    if vote != previous-vote
-      [ set any-votes-changed? true ]
-    recolor
+    if pcolor = green or pcolor = blue [ set vote vote + 2 ]
+    if pcolor = red or pcolor = yellow [ set vote vote - 2 ]
+    set non-usage 0
   ]
-  ;; if the votes have stabilized, we stop the simulation
-  if not any-votes-changed? [ stop ]
-  tick
+
+  ; inform others around us
+  ask turtles with [ center-right or right-leaning ] [
+    ask other turtles-here with [ left-leaning or center-left ] [
+      set vote vote + 1
+    ]
+  ]
+
+  ; inform others around us
+  ask turtles with [ center-left or left-leaning ] [
+    ask other turtles-here with [ right-leaning or center-right ] [
+      set vote vote - 1
+    ]
+  ]
+
+  ; place limits on the vote value
+  ask turtles with [ vote > 14 ] [ set vote 14 ]   ;; setting max vote
+  ask turtles with [ vote < 1 ] [ set vote 1 ]     ;; setting minimum vote
+
+  recolor
+
+  ;; create centers
+  ask turtles with [ right-leaning ] [
+    let open-patches neighbors with [ pcolor = black ]
+    if any? open-patches [
+      ask one-of open-patches [ set pcolor blue ]
+    ]
+  ]
+
+  ;; create centers
+  ask turtles with [ left-leaning ] [
+    let open-patches neighbors with [ pcolor = black ]
+    if any? open-patches [
+      ask one-of open-patches [ set pcolor yellow ]
+    ]
+  ]
+
+  ask patches with [ pcolor != black ] [ ;; we want non-used centers to disappear
+    if not any? turtles-here [ set non-usage (non-usage + 1) ]
+    if non-usage > non-usage-limit [ set pcolor black ]
+  ]
+
+ tick
 end
 
 ;; move randomly
@@ -236,8 +266,6 @@ to move  ;; turtle procedure
   lt random 40
 end
 
-;to communicate
-;end
 
 to recolor  ;; turtle procedure
   ;; Assign different colors based on the value of the vote variable
@@ -257,6 +285,22 @@ to recolor  ;; turtle procedure
   if vote = 14 [ set color pink ]
 end
 
+to-report right-leaning
+  report vote >= 11
+end
+
+to-report center-right
+  report vote >= 7 and vote < 11
+end
+
+to-report center-left
+  report awarenes >= 5 and vote < 7
+end
+
+to-report left-leaning
+  report awareness >= 1 and vote < 5
+end
+
 to set-min-voting-age [new-age]
   set min-voting-age new-age
   ask turtles [
@@ -274,13 +318,13 @@ to set-max-voting-age [new-age]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-647
-448
+243
+76
+778
+612
 -1
 -1
-13.0
+15.97
 1
 10
 1
@@ -335,10 +379,10 @@ NIL
 1
 
 SLIDER
-11
-280
-183
-313
+29
+115
+201
+148
 min-voting-age
 min-voting-age
 0
@@ -350,10 +394,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-10
-324
-182
-357
+29
+75
+201
+108
 max-voting-age
 max-voting-age
 0
@@ -365,10 +409,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-27
-82
-199
-115
+242
+28
+414
+61
 people
 people
 0
@@ -380,10 +424,10 @@ NIL
 HORIZONTAL
 
 SWITCH
-769
-30
-938
-63
+22
+174
+191
+207
 change-vote-if-tied?
 change-vote-if-tied?
 0
@@ -391,15 +435,45 @@ change-vote-if-tied?
 -1000
 
 SWITCH
-773
-90
-981
-123
+7
+224
+215
+257
 award-close-calls-to-loser?
 award-close-calls-to-loser?
 0
 1
 -1000
+
+SLIDER
+429
+28
+601
+61
+centers
+centers
+0
+100
+10.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+24
+281
+196
+314
+non-usage-limit
+non-usage-limit
+0
+100
+50.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
