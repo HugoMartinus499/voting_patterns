@@ -3,72 +3,183 @@ turtles-own
   vote    ;; my vote (1-14)
   total   ;; sum of votes around me
 ]
-patches-own[]
+patches-own[ non-usage ]
 
-globals [
-  min-voting-age
-  max-voting-age
-]
 
 to setup
   clear-all
   set-default-shape turtles "person"
-  set min-voting-age 16 ; Default minimum voting age
-  set max-voting-age 100 ; Default maximum voting age
+  ;set min-voting-age 16 ; Default minimum voting age
+  ;set max-voting-age 100 ; Default maximum voting age
 
-  create-turtles 1000 [
+  create-turtles people [
     let age random (max-voting-age - min-voting-age + 1) + min-voting-age  ; Random age between min-voting-age and max-voting-age
     set vote determine-vote age ; Determine initial vote
     setxy random-xcor random-ycor
   ]
   ask turtles [ recolor ]
+
+
   reset-ticks
 end
 
 to-report determine-vote [age]
   let vote-value 0
   ifelse age < 18 [
-  let random-probability random-float 100
-  ifelse random-probability <= 7 [
-    set vote-value 1 ; Enhedslisten
-  ] [
-    ifelse random-probability <= 12.6 [
-      set vote-value 2 ; SF
+    let random-probability random-float 100
+    ifelse random-probability <= 7 [
+      set vote-value 1 ; Enhedslisten
     ] [
-      ifelse random-probability <= 12.61 [
-        set vote-value 3 ; Frie Grønne
+      ifelse random-probability <= 12.6 [
+        set vote-value 2 ; SF
       ] [
-        ifelse random-probability <= 14.41 [
-          set vote-value 4 ; Alternativet
+        ifelse random-probability <= 12.61 [
+          set vote-value 3 ; Frie Grønne
         ] [
-          ifelse random-probability <= 30.41 [
-            set vote-value 5 ; Socialdemokraterne
+          ifelse random-probability <= 14.41 [
+            set vote-value 4 ; Alternativet
           ] [
-            ifelse random-probability <= 39.11 [
-              set vote-value 6 ; Radikale
+            ifelse random-probability <= 30.41 [
+              set vote-value 5 ; Socialdemokraterne
             ] [
-              ifelse random-probability <= 43.81 [
-                set vote-value 7 ; Moderaterne
+              ifelse random-probability <= 39.11 [
+                set vote-value 6 ; Radikale
               ] [
-                ifelse random-probability <= 49.01 [
-                  set vote-value 8 ; DF
+                ifelse random-probability <= 43.81 [
+                  set vote-value 7 ; Moderaterne
                 ] [
-                  ifelse random-probability <= 49.02 [
-                    set vote-value 9 ; KD
+                  ifelse random-probability <= 49.01 [
+                    set vote-value 8 ; DF
                   ] [
-                    ifelse random-probability <= 58.82 [
-                      set vote-value 10 ; Venstre
+                    ifelse random-probability <= 49.02 [
+                      set vote-value 9 ; KD
                     ] [
-                      ifelse random-probability <= 61.82 [
-                        set vote-value 11 ; DD
+                      ifelse random-probability <= 58.82 [
+                        set vote-value 10 ; Venstre
                       ] [
-                        ifelse random-probability <= 69.82 [
-                          set vote-value 12 ; Konservative
+                        ifelse random-probability <= 61.82 [
+                          set vote-value 11 ; DD
                         ] [
-                          ifelse random-probability <= 69.83 [
-                            set vote-value 13 ; NB
+                          ifelse random-probability <= 69.82 [
+                            set vote-value 12 ; Konservative
                           ] [
-                            set vote-value 14 ; LA
+                            ifelse random-probability <= 69.83 [
+                              set vote-value 13 ; NB
+                            ] [
+                              set vote-value 14 ; LA
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ] [
+    ifelse age >= 18 and age <= 65 [
+      let random-probability random-float 100
+      ifelse random-probability <= 5.13 [
+        set vote-value 1
+      ] [
+        ifelse random-probability <= 13.43 [
+          set vote-value 2
+        ] [
+          ifelse random-probability <= 14.33 [
+            set vote-value 3
+          ] [
+            ifelse random-probability <= 17.66 [
+              set vote-value 4
+            ] [
+              ifelse random-probability <= 45.16 [
+                set vote-value 5
+              ] [
+                ifelse random-probability <= 48.95 [
+                  set vote-value 6
+                ] [
+                  ifelse random-probability <= 58.22 [
+                    set vote-value 7
+                  ] [
+                    ifelse random-probability <= 60.86 [
+                      set vote-value 8
+                    ] [
+                      ifelse random-probability <= 61.38 [
+                        set vote-value 9
+                      ] [
+                        ifelse random-probability <= 74.7 [
+                          set vote-value 10
+                        ] [
+                          ifelse random-probability <= 82.82 [
+                            set vote-value 11
+                          ] [
+                            ifelse random-probability <= 88.33 [
+                              set vote-value 12
+                            ] [
+                              ifelse random-probability <= 92 [
+                                set vote-value 13
+                              ] [
+                                set vote-value 14
+                              ]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ] [
+      let random-probability random-float 100
+      ifelse random-probability <= 8 [
+        set vote-value 1
+      ] [
+        ifelse random-probability <= 17.5 [
+          set vote-value 2
+        ] [
+          ifelse random-probability <= 17.6 [
+            set vote-value 3
+          ] [
+            ifelse random-probability <= 19.4 [
+              set vote-value 4
+            ] [
+              ifelse random-probability <= 68.8 [
+                set vote-value 5
+              ] [
+                ifelse random-probability <= 69.2 [
+                  set vote-value 6
+                ] [
+                  ifelse random-probability <= 73.4 [
+                    set vote-value 7
+                  ] [
+                    ifelse random-probability <= 77.2 [
+                      set vote-value 8
+                    ] [
+                      ifelse random-probability <= 77.5 [
+                        set vote-value 9
+                      ] [
+                        ifelse random-probability <= 85.6 [
+                          set vote-value 10
+                        ] [
+                          ifelse random-probability <= 92.5 [
+                            set vote-value 11
+                          ] [
+                            ifelse random-probability <= 96.6 [
+                              set vote-value 12
+                            ] [
+                              ifelse random-probability <= 98.8 [
+                                set vote-value 13
+                              ] [
+                                set vote-value 14
+                              ]
+                            ]
                           ]
                         ]
                       ]
@@ -82,65 +193,9 @@ to-report determine-vote [age]
       ]
     ]
   ]
-] [
-  let random-probability random-float 100
-  ifelse random-probability <= 5.13 [
-    set vote-value 1
-  ] [
-    ifelse random-probability <= 13.43 [
-      set vote-value 2
-    ] [
-      ifelse random-probability <= 14.33 [
-        set vote-value 3
-      ] [
-        ifelse random-probability <= 17.66 [
-          set vote-value 4
-        ] [
-          ifelse random-probability <= 45.16 [
-            set vote-value 5
-          ] [
-            ifelse random-probability <= 48.95 [
-              set vote-value 6
-            ] [
-              ifelse random-probability <= 58.22 [
-                set vote-value 7
-              ] [
-                ifelse random-probability <= 60.86 [
-                  set vote-value 8
-                ] [
-                  ifelse random-probability <= 61.38 [
-                    set vote-value 9
-                  ] [
-                    ifelse random-probability <= 74.7 [
-                      set vote-value 10
-                    ] [
-                      ifelse random-probability <= 82.82 [
-                        set vote-value 11
-                      ] [
-                        ifelse random-probability <= 88.33 [
-                          set vote-value 12
-                        ] [
-                          ifelse random-probability <= 92 [
-                            set vote-value 13
-                          ] [
-                            set vote-value 14
-                          ]
-                        ]
-                      ]
-                    ]
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-    ]
-  ]
-]
-
   report vote-value
 end
+
 
 to go
   ;; keep track of whether any turtle has changed their vote
@@ -284,8 +339,8 @@ SLIDER
 280
 183
 313
-min-age
-min-age
+min-voting-age
+min-voting-age
 0
 100
 16.0
@@ -299,8 +354,8 @@ SLIDER
 324
 182
 357
-max-age
-max-age
+max-voting-age
+max-voting-age
 0
 100
 80.0
@@ -309,45 +364,42 @@ max-age
 NIL
 HORIZONTAL
 
-SWITCH
-17
-81
-186
-114
-change-vote-if-tied?
-change-vote-if-tied?
+SLIDER
+27
+82
+199
+115
+people
+people
+0
+500
+500.0
+10
 1
+NIL
+HORIZONTAL
+
+SWITCH
+769
+30
+938
+63
+change-vote-if-tied?
+change-vote-if-tied?
+0
 1
 -1000
 
 SWITCH
-7
-124
-215
-157
+773
+90
+981
+123
 award-close-calls-to-loser?
 award-close-calls-to-loser?
-1
+0
 1
 -1000
-
-PLOT
-19
-173
-219
-323
-plot 1
-NIL
-NIL
-0.0
-10.0
-0.0
-10.0
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" "plot count turtles"
 
 @#$#@#$#@
 ## WHAT IS IT?
