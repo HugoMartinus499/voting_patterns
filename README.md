@@ -42,8 +42,9 @@ All packages and models are included: https://ccl.northwestern.edu/netlogo/model
 Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
 
 ## ToDo
-- [ ] Look into workings of urban suite model
+- [x] Look into workings of urban suite model
 - [x] set some patches as information center to change vote
 - [x] set turtles to be colored by each vote option
-- [ ] fix to go and look into why tick cannot be used there
+- [x] fix to go and look into why tick cannot be used there
+- [ ] Set age specific votechange behavior
 - [ ] Make sure model works as expected
