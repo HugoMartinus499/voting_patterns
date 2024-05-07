@@ -216,19 +216,17 @@ to go
   ask turtles [ move ]
   ask turtles [enlighten]
 
-  ; inform others around us
-  ask turtles with [ center-left or left-leaning ] [
+  ask turtles [
+  ifelse center-left or left-leaning [
     ask other turtles-here with [ right-leaning or center-right ] [
       set vote vote - 1
     ]
-  ]
-
-  ; inform others around us
-  ask turtles with [ center-right or right-leaning ] [
+  ] [  ; center-right or right-leaning
     ask other turtles-here with [ left-leaning or center-left ] [
       set vote vote + 1
     ]
   ]
+]
 
   ; place limits on the vote value
   ask turtles with [ vote > 14 ] [ set vote 14 ]   ;; setting max vote
@@ -372,7 +370,7 @@ min-voting-age
 min-voting-age
 0
 100
-16.0
+18.0
 1
 1
 NIL
@@ -387,7 +385,7 @@ max-voting-age
 max-voting-age
 0
 100
-100.0
+80.0
 1
 1
 NIL
