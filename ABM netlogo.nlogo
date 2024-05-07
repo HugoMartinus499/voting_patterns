@@ -236,22 +236,6 @@ to go
 
   ask turtles [ recolor ]
 
-  ;; create centers
-  ask turtles with [ right-leaning ] [
-    let open-patches neighbors with [ pcolor = black ]
-    if any? open-patches [
-      ask one-of open-patches [ set pcolor blue ]
-    ]
-  ]
-
-  ;; create centers
-  ask turtles with [ left-leaning ] [
-    let open-patches neighbors with [ pcolor = black ]
-    if any? open-patches [
-      ask one-of open-patches [ set pcolor yellow ]
-    ]
-  ]
-
   ask patches with [ pcolor != black ] [ ;; we want non-used centers to disappear
     if not any? turtles-here [ set non-usage (non-usage + 1) ]
     if non-usage > non-usage-limit [ set pcolor black ]
@@ -262,10 +246,11 @@ to go
 end
 
 to enlighten
-  if pcolor = green or pcolor = blue [ set vote vote + 2 ]
-  if pcolor = red or pcolor = yellow [ set vote vote - 2 ]
+  if pcolor = green [ set vote vote + 2 ]
+  if pcolor = red [ set vote vote - 2 ]
   set non-usage 0
 end
+
 
 to recolor  ;; turtle procedure
   ;; Assign different colors based on the value of the vote variable
@@ -402,7 +387,7 @@ max-voting-age
 max-voting-age
 0
 100
-80.0
+100.0
 1
 1
 NIL
@@ -423,28 +408,6 @@ people
 NIL
 HORIZONTAL
 
-SWITCH
-22
-174
-191
-207
-change-vote-if-tied?
-change-vote-if-tied?
-1
-1
--1000
-
-SWITCH
-7
-224
-215
-257
-award-close-calls-to-loser?
-award-close-calls-to-loser?
-1
-1
--1000
-
 SLIDER
 429
 28
@@ -461,10 +424,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-24
-281
-196
-314
+29
+159
+201
+192
 non-usage-limit
 non-usage-limit
 0
