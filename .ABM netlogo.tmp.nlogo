@@ -31,11 +31,11 @@ end
 
 ;; move randomly
 to move  ;; turtle procedure
-  fd random 4
+  fd random 25
   ;; turn a random amount between -40 and 40 degrees,
   ;; keeping the average turn at 0
-  rt random 40
-  lt random 40
+  rt random 50
+  lt random 50
 end
 
 to-report determine-vote [age]
@@ -216,12 +216,7 @@ to go
   ask turtles [ move ]
   ask turtles [enlighten]
 
-  ; inform others around us
-  ask turtles with [ center-right or right-leaning ] [
-    ask other turtles-here with [ left-leaning or center-left ] [
-      set vote vote + 1
-    ]
-  ]
+
 
   ; inform others around us
   ask turtles with [ center-left or left-leaning ] [
@@ -246,11 +241,10 @@ to go
 end
 
 to enlighten
-  if pcolor = green or pcolor = blue [ set vote vote + 1 ]
-  if pcolor = red or pcolor = yellow [ set vote vote - 1 ]
+  if pcolor = green [ set vote vote + 2 ]
+  if pcolor = red [ set vote vote - 2 ]
   set non-usage 0
 end
-
 
 
 to recolor  ;; turtle procedure
@@ -373,7 +367,7 @@ min-voting-age
 min-voting-age
 0
 100
-16.0
+60.0
 1
 1
 NIL
@@ -403,7 +397,7 @@ people
 people
 0
 500
-500.0
+250.0
 10
 1
 NIL
@@ -438,6 +432,27 @@ non-usage-limit
 1
 NIL
 HORIZONTAL
+
+PLOT
+801
+31
+1194
+265
+Number of each political viewpoint
+Time
+Count
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"Left-leaning" 1.0 0 -5298144 true "" "plot count turtles with [ left-leaning ]"
+"Center-left" 1.0 0 -1604481 true "" "plot count turtles with [ center-left ]"
+"Center-right" 1.0 0 -8275240 true "" "plot count turtles with [ center-right ]"
+"Right-leaning" 1.0 0 -14454117 true "" "plot count turtles with [ right-leaning ]"
 
 @#$#@#$#@
 ## WHAT IS IT?
