@@ -214,9 +214,12 @@ end
 
 to go
   ask turtles [ move ]
-  ask turtles [enlighten]
-
-
+  ask turtles with [senio] [ignore-enlightenment]
+  ask turtles with [adult] [ enlighten ]
+  ask turtles with [young] [ enlighten2 ]
+  ask turtles with [senior] [ignore-communicate]
+  ask turtles with [adult] [ communicate ]
+  ask turtles with [young] [ communicate2 ]
 
   ; place limits on the vote value
   ask turtles with [ vote > 14 ] [ set vote 14 ]   ;; setting max vote
@@ -233,12 +236,71 @@ to go
   tick
 end
 
+to ignore-enlightenment
+  if pcolor = green [ set vote vote ]
+  if pcolor = red [ set vote vote ]
+  set non-usage 0
+end
+
 to enlighten
   if pcolor = green [ set vote vote + 2 ]
   if pcolor = red [ set vote vote - 2 ]
   set non-usage 0
 end
 
+to enlighten2
+  if pcolor = green [ set vote vote + 2 ]
+  if pcolor = red [ set vote vote - 2 ]
+  set non-usage 0
+end
+
+to ignore-communicate
+  ifelse center-left or left-leaning [
+    ask other turtles-here with [ right-leaning or center-right ] [
+      set vote vote
+    ]
+  ] [  ; center-right or right-leaning
+    ask other turtles-here with [ left-leaning or center-left ] [
+      set vote vote
+    ]
+  ]
+end
+
+to communicate
+  ifelse center-left or left-leaning [
+    ask other turtles-here with [ right-leaning or center-right ] [
+      set vote vote - 1
+    ]
+  ] [  ; center-right or right-leaning
+    ask other turtles-here with [ left-leaning or center-left ] [
+      set vote vote + 1
+    ]
+  ]
+end
+
+to communicate2
+  ifelse center-left or left-leaning [
+    ask other turtles-here with [ right-leaning or center-right ] [
+      set vote vote - 1
+    ]
+  ] [  ; center-right or right-leaning
+    ask other turtles-here with [ left-leaning or center-left ] [
+      set vote vote + 1
+    ]
+  ]
+end
+
+to-report senior
+  report age >= 65
+end
+
+to-report adult
+  report age >= 25 and age < 65
+end
+
+to-report young
+  report age > 0 and age < 25
+end
 
 to recolor  ;; turtle procedure
   ;; Assign different colors based on the value of the vote variable
@@ -360,7 +422,7 @@ min-voting-age
 min-voting-age
 0
 100
-16.0
+18.0
 1
 1
 NIL
@@ -375,7 +437,7 @@ max-voting-age
 max-voting-age
 0
 100
-100.0
+80.0
 1
 1
 NIL
