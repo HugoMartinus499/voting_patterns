@@ -229,8 +229,6 @@ to go
   ask turtles with [senior] [ignore-communicate]
   ask turtles with [adult] [ communicate ]
   ask turtles with [young] [ communicate2 ]
-  ;ask turtles [communicate]
-  ;ask turtles [enlighten]
 
   ; place limits on the vote value
   ask turtles with [ vote > 14 ] [ set vote 14 ]   ;; setting max vote
@@ -512,13 +510,57 @@ Count
 0.0
 10.0
 true
-false
+true
 "" ""
 PENS
 "Left-leaning" 1.0 0 -5298144 true "" "plot count turtles with [ left-leaning ]"
 "Center-left" 1.0 0 -1604481 true "" "plot count turtles with [ center-left ]"
 "Center-right" 1.0 0 -8275240 true "" "plot count turtles with [ center-right ]"
 "Right-leaning" 1.0 0 -14454117 true "" "plot count turtles with [ right-leaning ]"
+
+MONITOR
+801
+263
+898
+308
+Left Leaning
+count turtles with [left-leaning]
+1
+1
+11
+
+MONITOR
+896
+263
+987
+308
+Center-left
+count turtles with [center-left]
+1
+1
+11
+
+MONITOR
+987
+263
+1083
+308
+Center-right
+count turtles with [center-right]
+1
+1
+11
+
+MONITOR
+1083
+263
+1194
+308
+Right Leaning
+count turtles with [right-leaning]
+1
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
