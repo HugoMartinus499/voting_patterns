@@ -234,7 +234,7 @@ to go
   ask turtles with [ vote > 14 ] [ set vote 14 ]   ;; setting max vote
   ask turtles with [ vote < 1 ] [ set vote 1 ]     ;; setting minimum vote
 
-  ask turtles [ recolor ]
+  arecolor
 
   ;; create centers
   ask turtles with [ right-leaning ] [
@@ -430,7 +430,7 @@ SWITCH
 207
 change-vote-if-tied?
 change-vote-if-tied?
-1
+0
 1
 -1000
 
@@ -441,7 +441,7 @@ SWITCH
 257
 award-close-calls-to-loser?
 award-close-calls-to-loser?
-1
+0
 1
 -1000
 
