@@ -1,6 +1,7 @@
 turtles-own
 [
   vote    ;; my vote (1-14)
+  age-category
 ]
 patches-own[ non-usage ]
 
@@ -13,6 +14,7 @@ to setup
   create-turtles people [
     let age random (max-voting-age - min-voting-age + 1) + min-voting-age  ; Random age between min-voting-age and max-voting-age
     set vote determine-vote age ; Determine initial vote
+    set age-category determine-age-category age
     setxy random-xcor random-ycor
   ]
   ask turtles [ recolor ]
@@ -211,6 +213,13 @@ to-report determine-vote [age]
   report vote-value
 end
 
+to-report determine-age-category [age]
+  let category 0
+  if age < 25 [ set category 1]
+  if age >= 25 and age < 65 [ set category 2]
+  if age >= 65 [ set category 3]
+  report category
+end
 
 to go
   ask turtles [ move ]
@@ -220,6 +229,8 @@ to go
   ask turtles with [senior] [ignore-communicate]
   ask turtles with [adult] [ communicate ]
   ask turtles with [young] [ communicate2 ]
+  ;ask turtles [communicate]
+  ;ask turtles [enlighten]
 
   ; place limits on the vote value
   ask turtles with [ vote > 14 ] [ set vote 14 ]   ;; setting max vote
@@ -291,15 +302,15 @@ to communicate2
 end
 
 to-report senior
-  report age >= 65
+  report age-category = 3
 end
 
 to-report adult
-  report age >= 25 and age < 65
+  report age-category = 2
 end
 
 to-report young
-  report age > 0 and age < 25
+  report age-category = 1
 end
 
 to recolor  ;; turtle procedure
@@ -437,7 +448,7 @@ max-voting-age
 max-voting-age
 0
 100
-80.0
+100.0
 1
 1
 NIL
@@ -452,7 +463,7 @@ people
 people
 0
 500
-250.0
+500.0
 10
 1
 NIL
@@ -482,7 +493,7 @@ non-usage-limit
 non-usage-limit
 0
 100
-50.0
+25.0
 1
 1
 NIL
