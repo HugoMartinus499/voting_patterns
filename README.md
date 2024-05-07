@@ -46,5 +46,5 @@ Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
 - [x] set some patches as information center to change vote
 - [x] set turtles to be colored by each vote option
 - [x] fix to go and look into why tick cannot be used there
-- [ ] Set age specific votechange behavior
+- [x] Set age specific votechange behavior
 - [ ] Make sure model works as expected
