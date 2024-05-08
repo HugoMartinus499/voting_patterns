@@ -47,5 +47,5 @@ Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
 - [x] set turtles to be colored by each vote option
 - [x] fix to go and look into why tick cannot be used there
 - [x] Set age specific votechange behavior
-- [ ] Make a graph with each political party and number of votes
+- [x] Make a graph with each political party and number of votes
 - [ ] Make sure model works as expected
