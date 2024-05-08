@@ -502,7 +502,7 @@ max-voting-age
 max-voting-age
 0
 100
-64.0
+100.0
 1
 1
 NIL
@@ -620,9 +620,9 @@ count turtles with [right-leaning]
 
 PLOT
 801
-319
+307
 1193
-587
+559
 Number of each party
 Time
 Count
