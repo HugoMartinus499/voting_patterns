@@ -2,6 +2,7 @@ turtles-own
 [
   vote    ;; my vote (1-14)
   age-category
+  trust
 ]
 patches-own[ non-usage ]
 
@@ -223,6 +224,16 @@ end
 
 to go
   ask turtles [ move ]
+
+
+  ask turtles [
+    set heading towards one-of turtles-here  ;; find any nearby turtle
+    if any? turtles-here with [heading = heading of myself] [
+      ; Encountered another turtle, update trust
+      set trust trust + 1
+    ]
+  ]
+
   ask turtles with [senior] [ignore-enlightenment]
   ask turtles with [adult] [ enlighten ]
   ask turtles with [young] [ enlighten2 ]
@@ -278,11 +289,11 @@ end
 to communicate
   ifelse center-left or left-leaning [
     ask other turtles-here with [ right-leaning or center-right ] [
-      set vote vote - 0.05
+      set vote vote - (0.01 * trust)
     ]
   ] [  ;center-right or right-leaning
     ask other turtles-here with [ left-leaning or center-left ] [
-      set vote vote + 0.05
+      set vote vote + (0.01 * trust)
     ]
   ]
 end
@@ -290,11 +301,11 @@ end
 to communicate2
   ifelse center-left or left-leaning [
     ask other turtles-here with [ right-leaning or center-right ] [
-      set vote vote - 0.05
+      set vote vote - (0.015 * trust)
     ]
   ] [  ; center-right or right-leaning
     ask other turtles-here with [ left-leaning or center-left ] [
-      set vote vote + 0.05
+      set vote vote + (0.015 * trust)
     ]
   ]
 end

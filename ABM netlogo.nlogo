@@ -2,6 +2,7 @@ turtles-own
 [
   vote    ;; my vote (1-14)
   age-category
+  trust
 ]
 patches-own[ non-usage ]
 
@@ -20,7 +21,7 @@ to setup
   ask turtles [ recolor ]
 
   ask n-of centers patches [
-    set pcolor green
+    set pcolor blue
     set non-usage 0
   ]
 
@@ -223,6 +224,19 @@ end
 
 to go
   ask turtles [ move ]
+
+
+
+  ;; THIS CODE HERE DOESN'T WORK
+  ask turtles [
+    set heading towards one-of turtles-here  ;; find any nearby turtle
+    if any? turtles-here with [heading = heading of myself] [
+      ; Encountered another turtle, update trust
+      set trust trust + 1
+    ]
+  ]
+  ;; LOOK INTO POSSIBILITIES OF TURTLES RECOGNIZING OTHER TURTLES BASED ON IF THEY HAVE MET
+
   ask turtles with [senior] [ignore-enlightenment]
   ask turtles with [adult] [ enlighten ]
   ask turtles with [young] [ enlighten2 ]
@@ -231,8 +245,8 @@ to go
   ask turtles with [young] [ communicate2 ]
 
   ; place limits on the vote value
-  ask turtles with [ vote > 14 ] [ set vote 14 ]   ;; setting max vote
-  ask turtles with [ vote < 1 ] [ set vote 1 ]     ;; setting minimum vote
+  ask turtles with [ vote > 14.5 ] [ set vote 14.5 ]   ;; setting max vote
+  ask turtles with [ vote < 0.5 ] [ set vote 0.5 ]     ;; setting minimum vote
 
   ask turtles [ recolor ]
 
@@ -246,20 +260,20 @@ to go
 end
 
 to ignore-enlightenment
-  if pcolor = green [ set vote vote ]
-  if pcolor = red [ set vote vote ]
+  if pcolor = blue [ set vote vote + 0.01 ]
+  if pcolor = red [ set vote vote - 0.01 ]
   set non-usage 0
 end
 
 to enlighten
-  if pcolor = green [ set vote vote + 2 ]
-  if pcolor = red [ set vote vote - 2 ]
+  if pcolor = blue [ set vote vote + 0.1 ]
+  if pcolor = red [ set vote vote - 0.1 ]
   set non-usage 0
 end
 
 to enlighten2
-  if pcolor = green [ set vote vote + 2 ]
-  if pcolor = red [ set vote vote - 2 ]
+  if pcolor = blue [ set vote vote + 0.15 ]
+  if pcolor = red [ set vote vote - 0.15 ]
   set non-usage 0
 end
 
@@ -278,11 +292,11 @@ end
 to communicate
   ifelse center-left or left-leaning [
     ask other turtles-here with [ right-leaning or center-right ] [
-      set vote vote - 1
+      set vote vote - (0.01 * trust)
     ]
-  ] [  ; center-right or right-leaning
+  ] [  ;center-right or right-leaning
     ask other turtles-here with [ left-leaning or center-left ] [
-      set vote vote + 1
+      set vote vote + (0.01 * trust)
     ]
   ]
 end
@@ -290,11 +304,11 @@ end
 to communicate2
   ifelse center-left or left-leaning [
     ask other turtles-here with [ right-leaning or center-right ] [
-      set vote vote - 1
+      set vote vote - (0.015 * trust)
     ]
   ] [  ; center-right or right-leaning
     ask other turtles-here with [ left-leaning or center-left ] [
-      set vote vote + 1
+      set vote vote + (0.015 * trust)
     ]
   ]
 end
@@ -313,92 +327,92 @@ end
 
 to recolor  ;; turtle procedure
   ;; Assign different colors based on the value of the vote variable
-  if vote = 1 [ set color red ]
-  if vote = 2 [ set color orange ]
-  if vote = 3 [ set color yellow ]
-  if vote = 4 [ set color green ]
-  if vote = 5 [ set color cyan ]
-  if vote = 6 [ set color sky ]
-  if vote = 7 [ set color blue ]
-  if vote = 8 [ set color violet ]
-  if vote = 9 [ set color magenta ]
-  if vote = 10 [ set color brown ]
-  if vote = 11 [ set color black ]
-  if vote = 12 [ set color gray ]
-  if vote = 13 [ set color white ]
-  if vote = 14 [ set color pink ]
+  if vote >= 0.5 and vote < 1.5 [ set color red ]
+  if vote >= 1.5 and vote < 2.5 [ set color orange ]
+  if vote >= 2.5 and vote < 3.5 [ set color yellow ]
+  if vote >= 3.5 and vote < 4.5 [ set color green ]
+  if vote >= 4.5 and vote < 5.5 [ set color cyan ]
+  if vote >= 5.5 and vote < 6.5 [ set color sky ]
+  if vote >= 6.5 and vote < 7.5 [ set color blue ]
+  if vote >= 7.5 and vote < 8.5 [ set color violet ]
+  if vote >= 8.5 and vote < 9.5 [ set color magenta ]
+  if vote >= 9.5 and vote < 10.5 [ set color brown ]
+  if vote >= 10.5 and vote < 11.5 [ set color black ]
+  if vote >= 11.5 and vote < 12.5 [ set color gray ]
+  if vote >= 12.5 and vote < 13.5 [ set color white ]
+  if vote >= 13.5 and vote < 14.5 [ set color pink ]
 end
 
 to-report right-leaning
-  report vote >= 11
+  report vote >= 10.5
 end
 
 to-report center-right
-  report vote >= 7 and vote < 11
+  report vote >= 6.5 and vote < 10.5
 end
 
 to-report center-left
-  report vote >= 5 and vote < 7
+  report vote >= 4.5 and vote < 6.5
 end
 
 to-report left-leaning
-  report vote >= 1 and vote < 5
+  report vote >= 0.5 and vote < 4.5
 end
 
 to-report Enhedslisten
-  report vote = 1
+  report vote >= 0.5 and vote < 1.5
 end
 
 to-report SF
-  report vote = 2
+  report vote >= 1.5 and vote < 2.5
 end
 
 to-report Frie-Grønne
-  report vote = 3
+  report vote >= 2.5 and vote < 3.5
 end
 
 to-report Alternativet
-  report vote = 4
+  report vote >= 3.5 and vote < 4.5
 end
 
 to-report Socialdemokratiet
-  report vote = 5
+  report vote >= 4.5 and vote < 5.5
 end
 
 to-report Radikale
-  report vote = 6
+  report vote >= 5.5 and vote < 6.5
 end
 
 to-report Moderaterne
-  report vote = 7
+  report vote >= 6.5 and vote < 7.5
 end
 
 to-report DF
-  report vote = 8
+  report vote >= 7.5 and vote < 8.5
 end
 
 to-report Kristendemokraterne
-  report vote = 9
+  report vote >= 8.5 and vote < 9.5
 end
 
 to-report Venstre
-  report vote = 10
+  report vote >= 9.5 and vote < 10.5
 end
 
 to-report Danmarksdemokraterne
-  report vote = 11
+  report vote >= 10.5 and vote < 11.5
 end
 
 to-report Konservative
-  report vote = 12
+  report vote >= 11.5 and vote < 12.5
 end
 
 to-report Nye-Borgerlige
-  report vote = 13
+  report vote >= 12.5 and vote < 13.5
 end
 
 to-report LA
-  report vote = 14
+  report vote >= 13.5 and vote < 14.5
 end
 
 to set-min-voting-age [new-age]
@@ -487,7 +501,7 @@ min-voting-age
 min-voting-age
 0
 100
-16.0
+30.0
 1
 1
 NIL
@@ -502,7 +516,7 @@ max-voting-age
 max-voting-age
 0
 100
-64.0
+70.0
 1
 1
 NIL
