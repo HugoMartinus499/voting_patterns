@@ -216,8 +216,8 @@ end
 
 to-report determine-age-category [age]
   let category 0
-  if age < 25 [ set category 1]
-  if age >= 25 and age < 65 [ set category 2]
+  if age < 22 [ set category 1]
+  if age >= 22 and age < 65 [ set category 2]
   if age >= 65 [ set category 3]
   report category
 end
@@ -235,8 +235,8 @@ to go
   ask turtles with [adult] [ enlighten ]
   ask turtles with [young] [ enlighten2 ]
   ask turtles with [senior] [ignore-communicate]
-  ask turtles with [adult] [  ]
-  ask turtles with [young] [ influence2 ]
+  ask turtles with [adult] [ communicate ]
+  ask turtles with [young] [ communicate2 ]
 
   ; place limits on the vote value
   ask turtles with [ vote > 14.5 ] [ set vote 14.5 ]   ;; setting max vote
@@ -254,8 +254,8 @@ to go
 end
 
 to ignore-enlightenment
-  if pcolor = blue [ set vote vote + 0.05 ]
-  if pcolor = red [ set vote vote - 0.05 ]
+  if pcolor = blue [ set vote vote + 0.00001 ]
+  if pcolor = red [ set vote vote - 0.000001 ]
   set non-usage 0
 end
 
@@ -274,33 +274,35 @@ end
 to ignore-communicate
   ifelse center-left or left-leaning [
     ask other turtles-here with [ right-leaning or center-right ] [
-      set vote vote
+      set vote vote - (0.00000001 * trust)
     ]
   ] [  ; center-right or right-leaning
     ask other turtles-here with [ left-leaning or center-left ] [
-      set vote vote
+      set vote vote + (0.00000001 * trust)
     ]
   ]
 end
 
-to influence
-  let encountered-turtles other turtles-here
-  ask encountered-turtles [
-    ifelse [vote] of self > vote [
-      set vote vote - (0.01 * trust)
-    ] [
-      set vote vote + (0.01 * trust)
+;to influence
+  ;if other turtles-here [vote] > vote [
+      ;set vote vote + (0.01 * trust)
     ]
-  ]
-end
+  ] [  ;center-right or right-leaning
+  ;if other turtles-here [ vote ] < vote [
+        set vote vote - (0.01 * trust)
+    ]
+;end
 
 to influence2
-  let encountered-turtles other turtles-here
-  ask encountered-turtles [
-    ifelse [vote] of self > vote [
-      set vote vote - (0.015 * trust)
-    ] [
-      set vote vote + (0.015 * trust)
+  ifelse center-left or left-leaning [
+    ask other turtles-here with [ right-leaning or center-right ] [
+      if otherTurtle.vote > vote then  ; Check encountered turtle's vote
+        set vote vote - (0.015 * trust)
+    ]
+  ] [  ;center-right or right-leaning
+    ask other turtles-here with [ left-leaning or center-left ] [
+      if otherTurtle.vote > vote then  ; Check encountered turtle's vote
+        set vote vote + (0.015 * trust)
     ]
   ]
 end
@@ -532,7 +534,7 @@ max-voting-age
 max-voting-age
 0
 100
-100.0
+65.0
 1
 1
 NIL
@@ -562,7 +564,7 @@ centers
 centers
 0
 100
-30.0
+100.0
 1
 1
 NIL
