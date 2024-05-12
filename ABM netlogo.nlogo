@@ -224,18 +224,12 @@ end
 
 to go
   ask turtles [ move ]
-
-
-
-  ;; THIS CODE HERE DOESN'T WORK
   ask turtles [
-    set heading towards one-of turtles-here  ;; find any nearby turtle
-    if any? turtles-here with [heading = heading of myself] [
-      ; Encountered another turtle, update trust
-      set trust trust + 1
-    ]
+  if any? other turtles-here [
+    ; Encountered another turtle, update trust
+    set trust trust + 1
   ]
-  ;; LOOK INTO POSSIBILITIES OF TURTLES RECOGNIZING OTHER TURTLES BASED ON IF THEY HAVE MET
+]
 
   ask turtles with [senior] [ignore-enlightenment]
   ask turtles with [adult] [ enlighten ]
@@ -255,13 +249,13 @@ to go
     if non-usage > non-usage-limit [ set pcolor black ]
   ]
 
-  ; Update the tick counter (moved outside go)
+
   tick
 end
 
 to ignore-enlightenment
-  if pcolor = blue [ set vote vote + 0.01 ]
-  if pcolor = red [ set vote vote - 0.01 ]
+  if pcolor = blue [ set vote vote + 0.05 ]
+  if pcolor = red [ set vote vote - 0.05 ]
   set non-usage 0
 end
 
@@ -285,6 +279,28 @@ to ignore-communicate
   ] [  ; center-right or right-leaning
     ask other turtles-here with [ left-leaning or center-left ] [
       set vote vote
+    ]
+  ]
+end
+
+to influence
+  let encountered-turtles other turtles-here
+  ask encountered-turtles [
+    ifelse [vote] of self > vote [
+      set vote vote - (0.01 * trust)
+    ] [
+      set vote vote + (0.01 * trust)
+    ]
+  ]
+end
+
+to influence2
+  let encountered-turtles other turtles-here
+  ask encountered-turtles [
+    ifelse [vote] of self > vote [
+      set vote vote - (0.015 * trust)
+    ] [
+      set vote vote + (0.015 * trust)
     ]
   ]
 end
@@ -501,7 +517,7 @@ min-voting-age
 min-voting-age
 0
 100
-30.0
+18.0
 1
 1
 NIL
@@ -516,7 +532,7 @@ max-voting-age
 max-voting-age
 0
 100
-70.0
+100.0
 1
 1
 NIL
