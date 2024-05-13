@@ -1,4 +1,4 @@
-turtles-own
+ turtles-own
 [
   vote    ;; my vote (1-14)
   age-category
@@ -227,7 +227,7 @@ to go
   ask turtles [
   if any? other turtles-here [
     ; Encountered another turtle, update trust
-    set trust trust + 1
+    set trust trust + 0.5
   ]
 ]
 
@@ -255,7 +255,7 @@ end
 
 to ignore-enlightenment
   if pcolor = blue [ set vote vote + 0.00001 ]
-  if pcolor = red [ set vote vote - 0.000001 ]
+  if pcolor = red [ set vote vote - 0.00001 ]
   set non-usage 0
 end
 
@@ -272,61 +272,73 @@ to enlighten2
 end
 
 to ignore-communicate
-  ifelse center-left or left-leaning [
-    ask other turtles-here with [ right-leaning or center-right ] [
-      set vote vote - (0.00000001 * trust)
+  ifelse left-leaning or center-left [
+    ask other turtles-here with [right-leaning or center-right] [
+      set vote vote - (0.00001 * trust)
     ]
-  ] [  ; center-right or right-leaning
-    ask other turtles-here with [ left-leaning or center-left ] [
-      set vote vote + (0.00000001 * trust)
+  ] [
+    ifelse right-leaning or center-right [
+      ask other turtles-here with [left-leaning or center-left] [
+        set vote vote + (0.00001 * trust)
+      ]
+    ] [
+      ifelse center-left [
+        ask other turtles-here with [left-leaning] [
+          set vote vote + (0.00001 * trust)
+        ]
+      ] [
+        ask other turtles-here with [right-leaning] [
+          set vote vote - (0.00001 * trust)
+        ]
+      ]
     ]
   ]
 end
 
-;to influence
-  ;if other turtles-here [vote] > vote [
-      ;set vote vote + (0.01 * trust)
-    ;]
-  ;] [  ;center-right or right-leaning
-  ;if other turtles-here [ vote ] < vote [
-        ;set vote vote - (0.01 * trust)
-    ;]
-;end
-
-;to influence2
-  ;ifelse center-left or left-leaning [
-    ;ask other turtles-here with [ right-leaning or center-right ] [
-     ; if otherTurtle.vote > vote then  ; Check encountered turtle's vote
-      ;  set vote vote - (0.015 * trust)
-    ;]
-  ;] [  ;center-right or right-leaning
-    ;ask other turtles-here with [ left-leaning or center-left ] [
-     ; if otherTurtle.vote > vote then  ; Check encountered turtle's vote
-      ;  set vote vote + (0.015 * trust)
-    ;]
-  ;]
-;end
-
 to communicate
-  ifelse center-left or left-leaning [
-    ask other turtles-here with [ right-leaning or center-right ] [
+  ifelse left-leaning or center-left [
+    ask other turtles-here with [right-leaning or center-right] [
       set vote vote - (0.01 * trust)
     ]
-  ] [  ;center-right or right-leaning
-    ask other turtles-here with [ left-leaning or center-left ] [
-      set vote vote + (0.01 * trust)
+  ] [
+    ifelse right-leaning or center-right [
+      ask other turtles-here with [left-leaning or center-left] [
+        set vote vote + (0.01 * trust)
+      ]
+    ] [
+      ifelse center-left [
+        ask other turtles-here with [left-leaning] [
+          set vote vote + (0.01 * trust)
+        ]
+      ] [
+        ask other turtles-here with [right-leaning] [
+          set vote vote - (0.01 * trust)
+        ]
+      ]
     ]
   ]
 end
 
 to communicate2
-  ifelse center-left or left-leaning [
-    ask other turtles-here with [ right-leaning or center-right ] [
+  ifelse left-leaning or center-left [
+    ask other turtles-here with [right-leaning or center-right] [
       set vote vote - (0.015 * trust)
     ]
-  ] [  ; center-right or right-leaning
-    ask other turtles-here with [ left-leaning or center-left ] [
-      set vote vote + (0.015 * trust)
+  ] [
+    ifelse right-leaning or center-right [
+      ask other turtles-here with [left-leaning or center-left] [
+        set vote vote + (0.015 * trust)
+      ]
+    ] [
+      ifelse center-left [
+        ask other turtles-here with [left-leaning] [
+          set vote vote + (0.015 * trust)
+        ]
+      ] [
+        ask other turtles-here with [right-leaning] [
+          set vote vote - (0.015 * trust)
+        ]
+      ]
     ]
   ]
 end
@@ -534,7 +546,7 @@ max-voting-age
 max-voting-age
 0
 100
-65.0
+100.0
 1
 1
 NIL
@@ -549,7 +561,7 @@ people
 people
 0
 500
-300.0
+500.0
 10
 1
 NIL
@@ -564,7 +576,7 @@ centers
 centers
 0
 100
-100.0
+50.0
 1
 1
 NIL
