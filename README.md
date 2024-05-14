@@ -49,6 +49,6 @@ Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
 - [x] Set age specific votechange behavior
 - [x] Make a graph with each political party and number of votes
 - [x] Set influence based on trust
-- [ ] Make all turtles influence each other, not just different parties
+- [x] Make all turtles influence each other, not just different parties
 - [ ] More behavior-specific voting
 - [ ] Make sure model works as expected
