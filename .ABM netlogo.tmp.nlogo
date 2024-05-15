@@ -255,19 +255,19 @@ end
 
 to ignore-enlightenment
   if pcolor = blue [ set vote vote + 0.00001 ]
-  if pcolor = red [ set vote vote - 0.00001 ]
+  if pcolor = red [ set vote vote - 0.0001 ]
   set non-usage 0
 end
 
 to enlighten
-  if pcolor = blue [ set vote vote + 0.1 ]
-  if pcolor = red [ set vote vote - 0.1 ]
+  if pcolor = blue [ set vote vote + 0.25 ]
+  if pcolor = red [ set vote vote - 0.25 ]
   set non-usage 0
 end
 
 to enlighten2
-  if pcolor = blue [ set vote vote + 0.15 ]
-  if pcolor = red [ set vote vote - 0.15 ]
+  if pcolor = blue [ set vote vote + 0.35 ]
+  if pcolor = red [ set vote vote - 0.35 ]
   set non-usage 0
 end
 
@@ -1270,7 +1270,77 @@ to change2
     ]
 end
 
+to ignore-communicate
+  ifelse left-leaning or center-left [
+    ask other turtles-here with [right-leaning or center-right] [
+      set vote vote - (0.00001 * trust)
+    ]
+  ] [
+    ifelse right-leaning or center-right [
+      ask other turtles-here with [left-leaning or center-left] [
+        set vote vote + (0.00001 * trust)
+      ]
+    ] [
+      ifelse center-left [
+        ask other turtles-here with [left-leaning] [
+          set vote vote + (0.00001 * trust)
+        ]
+      ] [
+        ask other turtles-here with [right-leaning] [
+          set vote vote - (0.00001 * trust)
+        ]
+      ]
+    ]
+  ]
+end
 
+to communicate
+  ifelse left-leaning or center-left [
+    ask other turtles-here with [right-leaning or center-right] [
+      set vote vote - (0.01 * trust)
+    ]
+  ] [
+    ifelse right-leaning or center-right [
+      ask other turtles-here with [left-leaning or center-left] [
+        set vote vote + (0.01 * trust)
+      ]
+    ] [
+      ifelse center-left [
+        ask other turtles-here with [left-leaning] [
+          set vote vote + (0.01 * trust)
+        ]
+      ] [
+        ask other turtles-here with [right-leaning] [
+          set vote vote - (0.01 * trust)
+        ]
+      ]
+    ]
+  ]
+end
+
+to communicate2
+  ifelse left-leaning or center-left [
+    ask other turtles-here with [right-leaning or center-right] [
+      set vote vote - (0.015 * trust)
+    ]
+  ] [
+    ifelse right-leaning or center-right [
+      ask other turtles-here with [left-leaning or center-left] [
+        set vote vote + (0.015 * trust)
+      ]
+    ] [
+      ifelse center-left [
+        ask other turtles-here with [left-leaning] [
+          set vote vote + (0.015 * trust)
+        ]
+      ] [
+        ask other turtles-here with [right-leaning] [
+          set vote vote - (0.015 * trust)
+        ]
+      ]
+    ]
+  ]
+end
 
 to-report senior
   report age-category = 3
@@ -1460,7 +1530,7 @@ min-voting-age
 min-voting-age
 0
 100
-18.0
+16.0
 1
 1
 NIL

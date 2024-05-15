@@ -260,14 +260,14 @@ to ignore-enlightenment
 end
 
 to enlighten
-  if pcolor = blue [ set vote vote + 0.1 ]
-  if pcolor = red [ set vote vote - 0.1 ]
+  if pcolor = blue [ set vote vote + 0.25 ]
+  if pcolor = red [ set vote vote - 0.25 ]
   set non-usage 0
 end
 
 to enlighten2
-  if pcolor = blue [ set vote vote + 0.15 ]
-  if pcolor = red [ set vote vote - 0.15 ]
+  if pcolor = blue [ set vote vote + 0.35 ]
+  if pcolor = red [ set vote vote - 0.35 ]
   set non-usage 0
 end
 
@@ -1530,7 +1530,7 @@ min-voting-age
 min-voting-age
 0
 100
-18.0
+16.0
 1
 1
 NIL
