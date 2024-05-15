@@ -50,6 +50,6 @@ Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
 - [x] Make a graph with each political party and number of votes
 - [x] Set influence based on trust
 - [x] Make all turtles influence each other, not just different parties
-- [ ] Code in a check for if one party gets out of hand
+- [ ] Look into trust effect and potential damage
 - [ ] More behavior-specific voting
 - [ ] Make sure model works as expected
