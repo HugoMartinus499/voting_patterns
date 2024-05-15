@@ -234,9 +234,9 @@ to go
   ask turtles with [senior] [ ignore-enlightenment ]
   ask turtles with [adult] [ enlighten ]
   ask turtles with [young] [ enlighten2 ]
-  ask turtles with [senior] [ ignore-communicate ]
-  ask turtles with [adult] [ influence ]
-  ask turtles with [young] [ communicate2 ]
+  ask turtles with [senior] [ ignore-influence ]
+  ask turtles with [adult] [  ]
+  ask turtles with [young] [ influence2 ]
 
   ; place limits on the vote value
   ask turtles with [ vote > 14.5 ] [ set vote 14.5 ]   ;; setting max vote
@@ -337,92 +337,8 @@ to ignore-influence
                               set vote vote - (0.00001 * trust)
                             ]
                           ] [
-                            ifelse LA [
-                              ask other turtles-here with [LA] [
-                                set vote vote
-                              ]
-                            ] [
-                              ifelse LA [
-                                ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige] [
-                                  set vote vote + (0.00001 * trust)
-                                ]
-                              ] [
-                                ifelse Nye-Borgerlige [
-                                  ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative] [
-                                    set vote vote + (0.00001 * trust)
-                                  ]
-                                ] [
-                                  ifelse Konservative [
-                                    ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne] [
-                                      set vote vote + (0.00001 * trust)
-                                    ]
-                                  ] [
-                                    ifelse Danmarksdemokraterne [
-                                      ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre] [
-                                        set vote vote + (0.00001 * trust)
-                                      ]
-                                    ] [
-                                      ifelse Venstre [
-                                        ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne] [
-                                          set vote vote + (0.00001 * trust)
-                                        ]
-                                      ] [
-                                        ifelse Kristendemokraterne [
-                                          ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF] [
-                                            set vote vote + (0.00001 * trust)
-                                          ]
-                                        ] [
-                                          ifelse DF [
-                                            ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne] [
-                                              set vote vote + (0.00001 * trust)
-                                            ]
-                                          ] [
-                                            ifelse Moderaterne [
-                                              ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale] [
-                                                set vote vote + (0.00001 * trust)
-                                              ]
-                                            ] [
-                                              ifelse Radikale [
-                                                ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet] [
-                                                  set vote vote + (0.00001 * trust)
-                                                ]
-                                              ] [
-                                                ifelse Socialdemokratiet [
-                                                  ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne] [
-                                                    set vote vote + (0.00001 * trust)
-                                                  ]
-                                                ] [
-                                                  ifelse Frie-Grønne [
-                                                    ask other turtles-here with [Enhedslisten or SF or Alternativet] [
-                                                      set vote vote + (0.00001 * trust)
-                                                    ]
-                                                  ] [
-                                                    ifelse Alternativet [
-                                                      ask other turtles-here with [Enhedslisten or SF] [
-                                                        set vote vote + (0.00001 * trust)
-                                                      ]
-                                                    ] [
-                                                      ifelse SF [
-                                                        ask other turtles-here with [Enhedslisten] [
-                                                          set vote vote + (0.00001 * trust)
-                                                        ]
-                                                      ] [
-                                                        ask other turtles-here with [Enhedslisten] [
-                                                          set vote vote
-                                                        ]
-                                                      ]
-                                                    ]
-                                                  ]
-                                                ]
-                                              ]
-                                            ]
-                                          ]
-                                        ]
-                                      ]
-                                    ]
-                                  ]
-                                ]
-                              ]
+                            ask other turtles-here with [LA] [
+                              set vote vote
                             ]
                           ]
                         ]
@@ -437,6 +353,87 @@ to ignore-influence
       ]
     ]
   ]
+    ifelse LA [
+      ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige] [
+        set vote vote + (0.00001 * trust)
+      ]
+    ] [
+      ifelse Nye-Borgerlige [
+        ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative] [
+          set vote vote + (0.00001 * trust)
+        ]
+      ] [
+        ifelse Konservative [
+          ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne] [
+            set vote vote + (0.00001 * trust)
+          ]
+        ] [
+          ifelse Danmarksdemokraterne [
+            ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre] [
+              set vote vote + (0.00001 * trust)
+            ]
+          ] [
+            ifelse Venstre [
+              ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne] [
+                set vote vote + (0.00001 * trust)
+              ]
+            ] [
+              ifelse Kristendemokraterne [
+                ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF] [
+                  set vote vote + (0.00001 * trust)
+                ]
+              ] [
+                ifelse DF [
+                  ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne] [
+                    set vote vote + (0.00001 * trust)
+                  ]
+                ] [
+                  ifelse Moderaterne [
+                    ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale] [
+                      set vote vote + (0.00001 * trust)
+                    ]
+                  ] [
+                    ifelse Radikale [
+                      ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet] [
+                        set vote vote + (0.00001 * trust)
+                      ]
+                    ] [
+                      ifelse Socialdemokratiet [
+                        ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne] [
+                          set vote vote + (0.00001 * trust)
+                        ]
+                      ] [
+                        ifelse Frie-Grønne [
+                          ask other turtles-here with [Enhedslisten or SF or Alternativet] [
+                            set vote vote + (0.00001 * trust)
+                          ]
+                        ] [
+                          ifelse Alternativet [
+                            ask other turtles-here with [Enhedslisten or SF] [
+                              set vote vote + (0.00001 * trust)
+                            ]
+                          ] [
+                            ifelse SF [
+                              ask other turtles-here with [Enhedslisten] [
+                                set vote vote + (0.00001 * trust)
+                              ]
+                            ] [
+                              ask other turtles-here with [Enhedslisten] [
+                                set vote vote
+                              ]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
 end
 
 to influence
@@ -705,42 +702,42 @@ to influence2
                                       ] [
                                         ifelse Kristendemokraterne [
                                           ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF] [
-                                            set vote vote + (0.01 * trust)
+                                            set vote vote + (0.015 * trust)
                                           ]
                                         ] [
                                           ifelse DF [
                                             ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne] [
-                                              set vote vote + (0.01 * trust)
+                                              set vote vote + (0.015 * trust)
                                             ]
                                           ] [
                                             ifelse Moderaterne [
                                               ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale] [
-                                                set vote vote + (0.01 * trust)
+                                                set vote vote + (0.015 * trust)
                                               ]
                                             ] [
                                               ifelse Radikale [
                                                 ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet] [
-                                                  set vote vote + (0.01 * trust)
+                                                  set vote vote + (0.015 * trust)
                                                 ]
                                               ] [
                                                 ifelse Socialdemokratiet [
                                                   ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne] [
-                                                    set vote vote + (0.01 * trust)
+                                                    set vote vote + (0.015 * trust)
                                                   ]
                                                 ] [
                                                   ifelse Frie-Grønne [
                                                     ask other turtles-here with [Enhedslisten or SF or Alternativet] [
-                                                      set vote vote + (0.01 * trust)
+                                                      set vote vote + (0.015 * trust)
                                                     ]
                                                   ] [
                                                     ifelse Alternativet [
                                                       ask other turtles-here with [Enhedslisten or SF] [
-                                                        set vote vote + (0.01 * trust)
+                                                        set vote vote + (0.015 * trust)
                                                       ]
                                                     ] [
                                                       ifelse SF [
                                                         ask other turtles-here with [Enhedslisten] [
-                                                          set vote vote + (0.01 * trust)
+                                                          set vote vote + (0.015 * trust)
                                                         ]
                                                       ] [
                                                         ask other turtles-here with [Enhedslisten] [
@@ -773,6 +770,336 @@ to influence2
       ]
     ]
   ]
+end
+
+to change
+  ifelse Enhedslisten [
+    ask other turtles-here with [SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+      set vote vote - (0.01 * trust)
+    ]
+  ] [
+    ifelse SF [
+      ask other turtles-here with [Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+        set vote vote - (0.01 * trust)
+      ]
+    ] [
+      ifelse Frie-Grønne [
+        ask other turtles-here with [Alternativet or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+          set vote vote - (0.01 * trust)
+        ]
+      ] [
+        ifelse Alternativet [
+          ask other turtles-here with [Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+            set vote vote - (0.01 * trust)
+          ]
+        ] [
+          ifelse Socialdemokratiet [
+            ask other turtles-here with [Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+              set vote vote - (0.01 * trust)
+            ]
+          ] [
+            ifelse Radikale [
+              ask other turtles-here with [Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+                set vote vote - (0.01 * trust)
+              ]
+            ] [
+              ifelse Moderaterne [
+                ask other turtles-here with [DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+                  set vote vote - (0.01 * trust)
+                ]
+              ] [
+                ifelse DF [
+                  ask other turtles-here with [Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+                    set vote vote - (0.01 * trust)
+                  ]
+                ] [
+                  ifelse Kristendemokraterne [
+                    ask other turtles-here with [Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+                      set vote vote - (0.01 * trust)
+                    ]
+                  ] [
+                    ifelse Venstre [
+                      ask other turtles-here with [Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+                        set vote vote - (0.01 * trust)
+                      ]
+                    ] [
+                      ifelse Danmarksdemokraterne [
+                        ask other turtles-here with [Konservative or Nye-Borgerlige or LA] [
+                          set vote vote - (0.01 * trust)
+                        ]
+                      ] [
+                        ifelse Konservative [
+                          ask other turtles-here with [Nye-Borgerlige or LA] [
+                            set vote vote - (0.01 * trust)
+                          ]
+                        ] [
+                          ifelse Nye-Borgerlige [
+                            ask other turtles-here with [LA] [
+                              set vote vote - (0.01 * trust)
+                            ]
+                          ] [
+                            ask other turtles-here with [LA] [
+                              set vote vote
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+    ifelse LA [
+      ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige] [
+        set vote vote + (0.01 * trust)
+      ]
+    ] [
+      ifelse Nye-Borgerlige [
+        ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative] [
+          set vote vote + (0.01 * trust)
+        ]
+      ] [
+        ifelse Konservative [
+          ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne] [
+            set vote vote + (0.01 * trust)
+          ]
+        ] [
+          ifelse Danmarksdemokraterne [
+            ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre] [
+              set vote vote + (0.01 * trust)
+            ]
+          ] [
+            ifelse Venstre [
+              ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne] [
+                set vote vote + (0.01 * trust)
+              ]
+            ] [
+              ifelse Kristendemokraterne [
+                ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF] [
+                  set vote vote + (0.01 * trust)
+                ]
+              ] [
+                ifelse DF [
+                  ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne] [
+                    set vote vote + (0.01 * trust)
+                  ]
+                ] [
+                  ifelse Moderaterne [
+                    ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale] [
+                      set vote vote + (0.01 * trust)
+                    ]
+                  ] [
+                    ifelse Radikale [
+                      ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet] [
+                        set vote vote + (0.01 * trust)
+                      ]
+                    ] [
+                      ifelse Socialdemokratiet [
+                        ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne] [
+                          set vote vote + (0.01 * trust)
+                        ]
+                      ] [
+                        ifelse Frie-Grønne [
+                          ask other turtles-here with [Enhedslisten or SF or Alternativet] [
+                            set vote vote + (0.01 * trust)
+                          ]
+                        ] [
+                          ifelse Alternativet [
+                            ask other turtles-here with [Enhedslisten or SF] [
+                              set vote vote + (0.01 * trust)
+                            ]
+                          ] [
+                            ifelse SF [
+                              ask other turtles-here with [Enhedslisten] [
+                                set vote vote + (0.01 * trust)
+                              ]
+                            ] [
+                              ask other turtles-here with [Enhedslisten] [
+                                set vote vote
+                              ]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+end
+
+to change2
+  ifelse Enhedslisten [
+    ask other turtles-here with [SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+      set vote vote - (0.015 * trust)
+    ]
+  ] [
+    ifelse SF [
+      ask other turtles-here with [Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+        set vote vote - (0.015 * trust)
+      ]
+    ] [
+      ifelse Frie-Grønne [
+        ask other turtles-here with [Alternativet or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+          set vote vote - (0.015 * trust)
+        ]
+      ] [
+        ifelse Alternativet [
+          ask other turtles-here with [Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+            set vote vote - (0.015 * trust)
+          ]
+        ] [
+          ifelse Socialdemokratiet [
+            ask other turtles-here with [Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+              set vote vote - (0.015 * trust)
+            ]
+          ] [
+            ifelse Radikale [
+              ask other turtles-here with [Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+                set vote vote - (0.015 * trust)
+              ]
+            ] [
+              ifelse Moderaterne [
+                ask other turtles-here with [DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+                  set vote vote - (0.015 * trust)
+                ]
+              ] [
+                ifelse DF [
+                  ask other turtles-here with [Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+                    set vote vote - (0.015 * trust)
+                  ]
+                ] [
+                  ifelse Kristendemokraterne [
+                    ask other turtles-here with [Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+                      set vote vote - (0.015 * trust)
+                    ]
+                  ] [
+                    ifelse Venstre [
+                      ask other turtles-here with [Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
+                        set vote vote - (0.015 * trust)
+                      ]
+                    ] [
+                      ifelse Danmarksdemokraterne [
+                        ask other turtles-here with [Konservative or Nye-Borgerlige or LA] [
+                          set vote vote - (0.015 * trust)
+                        ]
+                      ] [
+                        ifelse Konservative [
+                          ask other turtles-here with [Nye-Borgerlige or LA] [
+                            set vote vote - (0.015 * trust)
+                          ]
+                        ] [
+                          ifelse Nye-Borgerlige [
+                            ask other turtles-here with [LA] [
+                              set vote vote - (0.015 * trust)
+                            ]
+                          ] [
+                            ask other turtles-here with [LA] [
+                              set vote vote
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  ]
+    ifelse LA [
+      ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige] [
+        set vote vote + (0.015 * trust)
+      ]
+    ] [
+      ifelse Nye-Borgerlige [
+        ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative] [
+          set vote vote + (0.015 * trust)
+        ]
+      ] [
+        ifelse Konservative [
+          ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne] [
+            set vote vote + (0.015 * trust)
+          ]
+        ] [
+          ifelse Danmarksdemokraterne [
+            ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre] [
+              set vote vote + (0.015 * trust)
+            ]
+          ] [
+            ifelse Venstre [
+              ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne] [
+                set vote vote + (0.015 * trust)
+              ]
+            ] [
+              ifelse Kristendemokraterne [
+                ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF] [
+                  set vote vote + (0.015 * trust)
+                ]
+              ] [
+                ifelse DF [
+                  ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne] [
+                    set vote vote + (0.015 * trust)
+                  ]
+                ] [
+                  ifelse Moderaterne [
+                    ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale] [
+                      set vote vote + (0.015 * trust)
+                    ]
+                  ] [
+                    ifelse Radikale [
+                      ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet] [
+                        set vote vote + (0.015 * trust)
+                      ]
+                    ] [
+                      ifelse Socialdemokratiet [
+                        ask other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne] [
+                          set vote vote + (0.015 * trust)
+                        ]
+                      ] [
+                        ifelse Frie-Grønne [
+                          ask other turtles-here with [Enhedslisten or SF or Alternativet] [
+                            set vote vote + (0.015 * trust)
+                          ]
+                        ] [
+                          ifelse Alternativet [
+                            ask other turtles-here with [Enhedslisten or SF] [
+                              set vote vote + (0.015 * trust)
+                            ]
+                          ] [
+                            ifelse SF [
+                              ask other turtles-here with [Enhedslisten] [
+                                set vote vote + (0.015 * trust)
+                              ]
+                            ] [
+                              ask other turtles-here with [Enhedslisten] [
+                                set vote vote
+                              ]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
 end
 
 to ignore-communicate
@@ -1035,7 +1362,7 @@ min-voting-age
 min-voting-age
 0
 100
-25.0
+14.0
 1
 1
 NIL
@@ -1050,7 +1377,7 @@ max-voting-age
 max-voting-age
 0
 100
-64.0
+100.0
 1
 1
 NIL
@@ -1065,7 +1392,7 @@ people
 people
 0
 500
-500.0
+250.0
 10
 1
 NIL
@@ -1080,7 +1407,7 @@ centers
 centers
 0
 100
-100.0
+50.0
 1
 1
 NIL
