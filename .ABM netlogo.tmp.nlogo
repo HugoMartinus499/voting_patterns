@@ -227,7 +227,7 @@ to go
   ask turtles [
   if any? other turtles-here [
     ; Encountered another turtle, update trust
-    set trust trust + 0.0000001
+    set trust trust + 0.00000045
   ]
 ]
 
