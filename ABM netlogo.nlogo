@@ -227,7 +227,7 @@ to go
   ask turtles [
   if any? other turtles-here [
     ; Encountered another turtle, update trust
-    set trust trust + 0.5
+    set trust trust + 0.0000000000035
   ]
 ]
 
@@ -1530,7 +1530,7 @@ min-voting-age
 min-voting-age
 0
 100
-16.0
+18.0
 1
 1
 NIL
@@ -1598,9 +1598,9 @@ HORIZONTAL
 
 PLOT
 801
-31
-1194
-265
+29
+2537
+263
 Number of each political viewpoint
 Time
 Count
@@ -1664,7 +1664,7 @@ count turtles with [right-leaning]
 PLOT
 801
 319
-1193
+2532
 587
 Number of each party
 Time
