@@ -242,9 +242,9 @@ to go
   ask turtles with [senior] [ ignore-enlightenment ]
   ask turtles with [adult] [ enlighten ]
   ask turtles with [young] [ enlighten2 ]
-  ask turtles with [senior] [ ignore-chang ]
-  ask turtles with [adult] [ change ]
-  ask turtles with [young] [ change2 ]
+  ask turtles with [senior] [ ignore-persuade ]
+  ask turtles with [adult] [ persuade ]
+  ask turtles with [young] [ persuade2 ]
 
   ; place limits on the vote value
   ask turtles with [ vote > 14.5 ] [ set vote 14.5 ]   ;; setting max vote
@@ -279,78 +279,7 @@ to enlighten2
   set non-usage 0
 end
 
-to update-vote
-  if Enhedslisten [
-    if any? other turtles-here with [SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if SF [
-    if any? other turtles-here with [Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if Frie-Grønne [
-    if any? other turtles-here with [Alternativet or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if Alternativet [
-    if any? other turtles-here with [Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if Socialdemokratiet [
-    if any? other turtles-here with [Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if Radikale [
-    if any? other turtles-here with [Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if Moderaterne [
-    if any? other turtles-here with [DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if DF [
-    if any? other turtles-here with [Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if Kristendemokraterne [
-    if any? other turtles-here with [Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if Venstre [
-    if any? other turtles-here with [Danmarksdemokraterne or Konservative or Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if Danmarksdemokraterne [
-    if any? other turtles-here with [Konservative or Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if Konservative [
-    if any? other turtles-here with [Nye-Borgerlige or LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if Nye-Borgerlige [
-    if any? other turtles-here with [LA] [
-      set vote vote + (0.1 * trust)
-    ]
-  ]
-  if LA [
-    if any? other turtles-here with [Enhedslisten or SF or Alternativet or Frie-Grønne or Socialdemokratiet or Radikale or Moderaterne or DF or Kristendemokraterne or Venstre or Danmarksdemokraterne or Konservative or Nye-Borgerlige] [
-      set vote vote - (0.1 * trust)
-    ]
-  ]
-end
+
 
 to ignore-persuade
   ifelse Enhedslisten [
@@ -1373,7 +1302,7 @@ min-voting-age
 min-voting-age
 0
 100
-69.0
+18.0
 1
 1
 NIL
@@ -1403,7 +1332,7 @@ people
 people
 0
 500
-500.0
+100.0
 10
 1
 NIL
