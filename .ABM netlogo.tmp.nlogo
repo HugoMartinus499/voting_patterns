@@ -3,6 +3,7 @@
   vote    ;; my vote (1-14)
   age-category
   trust
+  credibility
 ]
 patches-own[ non-usage ]
 
@@ -16,6 +17,7 @@ to setup
     let age random (max-voting-age - min-voting-age + 1) + min-voting-age  ; Random age between min-voting-age and max-voting-age
     set vote determine-vote age ; Determine initial vote
     set age-category determine-age-category age
+    set credibility random 10
     setxy random-xcor random-ycor
   ]
   ask turtles [ recolor ]
@@ -216,8 +218,8 @@ end
 
 to-report determine-age-category [age]
   let category 0
-  if age < 22 [ set category 1]
-  if age >= 22 and age < 65 [ set category 2]
+  if age < 20 [ set category 1]
+  if age >= 20 and age < 65 [ set category 2]
   if age >= 65 [ set category 3]
   report category
 end
@@ -225,12 +227,18 @@ end
 to go
   ask turtles [ move ]
   ask turtles [
-  if any? other turtles-here [
+    if any? other turtles-here with [ credible] [
     ; Encountered another turtle, update trust
-    set trust trust + 0.00000045
+    set trust trust + 0.00005
   ]
 ]
 
+  ask turtles [
+    if any? other turtles-here with [ uncredible] [
+    ; Encountered another turtle, update trust
+    set trust trust - 0.0005
+  ]
+]
   ask turtles with [senior] [ ignore-enlightenment ]
   ask turtles with [adult] [ enlighten ]
   ask turtles with [young] [ enlighten2 ]
@@ -1352,6 +1360,14 @@ end
 
 to-report young
   report age-category = 1
+end
+
+to-report credible
+  report credibility > 7
+end
+
+to-report uncredible
+  report credibility < 4
 end
 
 to recolor  ;; turtle procedure
