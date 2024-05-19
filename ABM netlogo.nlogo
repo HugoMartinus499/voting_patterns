@@ -262,8 +262,8 @@ to go
 end
 
 to ignore-enlightenment
-  if pcolor = blue [ set vote vote + 0.00001 ]
-  if pcolor = red [ set vote vote - 0.00001 ]
+  if pcolor = blue [ set vote vote + 0.001 ]
+  if pcolor = red [ set vote vote - 0.001 ]
   set non-usage 0
 end
 
