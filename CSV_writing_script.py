@@ -17,7 +17,7 @@ for line in file :
     for t in titles:
         if t in line:
             filename = line
-            to_file = open(f'Data/{t}.csv', 'w')
+            to_file = open(f'Data/CSV/{t}.csv', 'w')
             new_file = True
     
     if not new_file:
