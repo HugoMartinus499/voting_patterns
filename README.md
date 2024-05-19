@@ -51,5 +51,5 @@ Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
 - [x] Set influence based on trust
 - [x] Make all turtles influence each other, not just different parties
 - [x] Look into trust effect and potential damage
-- [ ] More behavior-specific voting
-- [ ] Make sure model works as expected
+- [x] More behavior-specific voting
+- [x] Make sure model works as expected
