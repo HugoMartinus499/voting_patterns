@@ -55,4 +55,5 @@ Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
 - [x] Make sure model works as expected
 - [x] Extract data from simulations
 - [x] Visualize data in R
+- [ ] Simulate with different populations
 - [ ] Data analysis
