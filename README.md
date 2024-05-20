@@ -53,3 +53,6 @@ Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
 - [x] Look into trust effect and potential damage
 - [x] More behavior-specific voting
 - [x] Make sure model works as expected
+- [x] Extract data from simulations
+- [x] Visualize data in R
+- [ ] Data analysis
