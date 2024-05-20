@@ -55,5 +55,6 @@ Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
 - [x] Make sure model works as expected
 - [x] Extract data from simulations
 - [x] Visualize data in R
+- [ ] Make csv writing script better, more generalisable
 - [ ] Simulate with different populations
 - [ ] Data analysis
