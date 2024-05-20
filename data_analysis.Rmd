@@ -55,6 +55,67 @@ Globals <- read.csv("Data/CSV/GLOBALS_1_16_80.csv")
 Patches <- read.csv("Data/CSV/PATCHES_1_16_80.csv")
 ```
 
+```{r}
+Turtles1_16_80$sim <- 1
+Turtles2_16_80$sim <- 2
+Turtles3_16_80$sim <- 3
+Turtles4_16_80$sim <- 4
+Turtles5_16_80$sim <- 5
+Turtles1_18_80$sim <- 1
+Turtles2_18_80$sim <- 2
+Turtles3_18_80$sim <- 3
+Turtles4_18_80$sim <- 4
+Turtles5_18_80$sim <- 5
+Turtles1_16_100$sim <- 1
+Turtles2_16_100$sim <- 2
+Turtles3_16_100$sim <- 3
+Turtles4_16_100$sim <- 4
+Turtles5_16_100$sim <- 5
+Turtles1_18_100$sim <- 1
+Turtles2_18_100$sim <- 2
+Turtles3_18_100$sim <- 3
+Turtles4_18_100$sim <- 4
+Turtles5_18_100$sim <- 5
+
+df_16_80 <- rbind(Turtles1_16_80, Turtles2_16_80, Turtles3_16_80, Turtles4_16_80, Turtles5_16_80)
+df_16_100 <- rbind(Turtles1_16_100, Turtles2_16_100, Turtles3_16_100, Turtles4_16_100, Turtles5_16_100)
+df_18_80 <- rbind(Turtles1_18_80, Turtles2_18_80, Turtles3_18_80, Turtles4_18_80, Turtles5_18_80)
+df_18_100 <- rbind(Turtles1_18_100, Turtles2_18_100, Turtles3_18_100, Turtles4_18_100, Turtles5_18_100)
+```
+
+```{r}
+grid.arrange(
+  ggplot(df_16_80, aes(x = vote, fill = factor(sim))) +
+  geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
+  labs(title = "Age 16-80", x = "Vote", y = "Frequency") +
+  theme_minimal() +
+  scale_fill_manual(values = c("red", "blue", "green", "purple", "orange")) +
+  guides(fill = guide_legend(title = "Simulation")),
+  
+  ggplot(df_16_100, aes(x = vote, fill = factor(sim))) +
+  geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
+  labs(title = "Age 16-100", x = "Vote", y = "Frequency") +
+  theme_minimal() +
+  scale_fill_manual(values = c("red", "blue", "green", "purple", "orange")) +
+  guides(fill = guide_legend(title = "Simulation")),
+  
+  ggplot(df_18_80, aes(x = vote, fill = factor(sim))) +
+  geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
+  labs(title = "Age 18-80", x = "Vote", y = "Frequency") +
+  theme_minimal() +
+  scale_fill_manual(values = c("red", "blue", "green", "purple", "orange")) +
+  guides(fill = guide_legend(title = "Simulation")),
+  
+  ggplot(df_18_100, aes(x = vote, fill = factor(sim))) +
+  geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
+  labs(title = "Age 18-100", x = "Vote", y = "Frequency") +
+  theme_minimal() +
+  scale_fill_manual(values = c("red", "blue", "green", "purple", "orange")) +
+  guides(fill = guide_legend(title = "Simulation")),
+  
+  nrow = 2, ncol = 2
+)
+```
 
 ```{r}
 grid.arrange(
