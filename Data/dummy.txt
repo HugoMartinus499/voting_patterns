@@ -1,4 +1,4 @@
 "export-world data (NetLogo 6.4.0)"
 "ABM netlogo.nlogo"
-"05/19/2024 22:02:00:225 +0200"
+"05/19/2024 22:16:09:424 +0200"
 
