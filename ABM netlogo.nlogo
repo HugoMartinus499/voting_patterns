@@ -1632,15 +1632,8 @@ NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 1.0
-    org.nlogo.sdm.gui.AggregateDrawing 3
-        org.nlogo.sdm.gui.StockFigure "attributes" "attributes" 1 "FillColor" "Color" 225 225 182 46 37 60 40
-            org.nlogo.sdm.gui.WrappedStock "" "" 0
-        org.nlogo.sdm.gui.RateConnection 3 118 54 148 52 180 52 NULL NULL 0 0 0
-            org.jhotdraw.standard.ChopBoxConnector REF 1
-            org.jhotdraw.figures.ChopEllipseConnector
-                org.nlogo.sdm.gui.ReservoirFigure "attributes" "attributes" 1 "FillColor" "Color" 192 192 192 179 37 30 30
-            org.nlogo.sdm.gui.WrappedRate "" "" REF 2
-                org.nlogo.sdm.gui.WrappedReservoir  0   REF 6
+    org.nlogo.sdm.gui.AggregateDrawing 1
+        org.nlogo.sdm.gui.ReservoirFigure "attributes" "attributes" 1 "FillColor" "Color" 192 192 192 179 37 30 30
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
