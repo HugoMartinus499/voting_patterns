@@ -36,21 +36,41 @@ Turtles2_16_80 <- read.csv("Data/CSV/TURTLES_2_16_80.csv")
 Turtles3_16_80 <- read.csv("Data/CSV/TURTLES_3_16_80.csv")
 Turtles4_16_80 <- read.csv("Data/CSV/TURTLES_4_16_80.csv")
 Turtles5_16_80 <- read.csv("Data/CSV/TURTLES_5_16_80.csv")
+Turtles6_16_80 <- read.csv("Data/CSV/TURTLES_6_16_80.csv")
+Turtles7_16_80 <- read.csv("Data/CSV/TURTLES_7_16_80.csv")
+Turtles8_16_80 <- read.csv("Data/CSV/TURTLES_8_16_80.csv")
+Turtles9_16_80 <- read.csv("Data/CSV/TURTLES_9_16_80.csv")
+Turtles10_16_80 <- read.csv("Data/CSV/TURTLES_10_16_80.csv")
 Turtles1_16_100 <- read.csv("Data/CSV/TURTLES_1_16_100.csv")
 Turtles2_16_100 <- read.csv("Data/CSV/TURTLES_2_16_100.csv")
 Turtles3_16_100 <- read.csv("Data/CSV/TURTLES_3_16_100.csv")
 Turtles4_16_100 <- read.csv("Data/CSV/TURTLES_4_16_100.csv")
 Turtles5_16_100 <- read.csv("Data/CSV/TURTLES_5_16_100.csv")
+Turtles6_16_100 <- read.csv("Data/CSV/TURTLES_6_16_100.csv")
+Turtles7_16_100 <- read.csv("Data/CSV/TURTLES_7_16_100.csv")
+Turtles8_16_100 <- read.csv("Data/CSV/TURTLES_8_16_100.csv")
+Turtles9_16_100 <- read.csv("Data/CSV/TURTLES_9_16_100.csv")
+Turtles10_16_100 <- read.csv("Data/CSV/TURTLES_10_16_100.csv")
 Turtles1_18_80 <- read.csv("Data/CSV/TURTLES_1_18_80.csv")
 Turtles2_18_80 <- read.csv("Data/CSV/TURTLES_2_18_80.csv")
 Turtles3_18_80 <- read.csv("Data/CSV/TURTLES_3_18_80.csv")
 Turtles4_18_80 <- read.csv("Data/CSV/TURTLES_4_18_80.csv")
 Turtles5_18_80 <- read.csv("Data/CSV/TURTLES_5_18_80.csv")
+Turtles6_18_80 <- read.csv("Data/CSV/TURTLES_6_18_80.csv")
+Turtles7_18_80 <- read.csv("Data/CSV/TURTLES_7_18_80.csv")
+Turtles8_18_80 <- read.csv("Data/CSV/TURTLES_8_18_80.csv")
+Turtles9_18_80 <- read.csv("Data/CSV/TURTLES_9_18_80.csv")
+Turtles10_18_80 <- read.csv("Data/CSV/TURTLES_10_18_80.csv")
 Turtles1_18_100 <- read.csv("Data/CSV/TURTLES_1_18_100.csv")
 Turtles2_18_100 <- read.csv("Data/CSV/TURTLES_2_18_100.csv")
 Turtles3_18_100 <- read.csv("Data/CSV/TURTLES_3_18_100.csv")
 Turtles4_18_100 <- read.csv("Data/CSV/TURTLES_4_18_100.csv")
 Turtles5_18_100 <- read.csv("Data/CSV/TURTLES_5_18_100.csv")
+Turtles6_18_100 <- read.csv("Data/CSV/TURTLES_6_18_100.csv")
+Turtles7_18_100 <- read.csv("Data/CSV/TURTLES_7_18_100.csv")
+Turtles8_18_100 <- read.csv("Data/CSV/TURTLES_8_18_100.csv")
+Turtles9_18_100 <- read.csv("Data/CSV/TURTLES_9_18_100.csv")
+Turtles10_18_100 <- read.csv("Data/CSV/TURTLES_10_18_100.csv")
 ```
 
 #Bind df together and add sim number
@@ -60,26 +80,46 @@ Turtles2_16_80$sim <- 2
 Turtles3_16_80$sim <- 3
 Turtles4_16_80$sim <- 4
 Turtles5_16_80$sim <- 5
+Turtles6_16_80$sim <- 6
+Turtles7_16_80$sim <- 7
+Turtles8_16_80$sim <- 8
+Turtles9_16_80$sim <- 9
+Turtles10_16_80$sim <- 10
 Turtles1_18_80$sim <- 1
 Turtles2_18_80$sim <- 2
 Turtles3_18_80$sim <- 3
 Turtles4_18_80$sim <- 4
 Turtles5_18_80$sim <- 5
+Turtles6_18_80$sim <- 6
+Turtles7_18_80$sim <- 7
+Turtles8_18_80$sim <- 8
+Turtles9_18_80$sim <- 9
+Turtles10_18_80$sim <- 10
 Turtles1_16_100$sim <- 1
 Turtles2_16_100$sim <- 2
 Turtles3_16_100$sim <- 3
 Turtles4_16_100$sim <- 4
 Turtles5_16_100$sim <- 5
+Turtles6_16_100$sim <- 6
+Turtles7_16_100$sim <- 7
+Turtles8_16_100$sim <- 8
+Turtles9_16_100$sim <- 9
+Turtles10_16_100$sim <- 10
 Turtles1_18_100$sim <- 1
 Turtles2_18_100$sim <- 2
 Turtles3_18_100$sim <- 3
 Turtles4_18_100$sim <- 4
 Turtles5_18_100$sim <- 5
+Turtles6_18_100$sim <- 6
+Turtles7_18_100$sim <- 7
+Turtles8_18_100$sim <- 8
+Turtles9_18_100$sim <- 9
+Turtles10_18_100$sim <- 10
 
-df_16_80 <- rbind(Turtles1_16_80, Turtles2_16_80, Turtles3_16_80, Turtles4_16_80, Turtles5_16_80)
-df_16_100 <- rbind(Turtles1_16_100, Turtles2_16_100, Turtles3_16_100, Turtles4_16_100, Turtles5_16_100)
-df_18_80 <- rbind(Turtles1_18_80, Turtles2_18_80, Turtles3_18_80, Turtles4_18_80, Turtles5_18_80)
-df_18_100 <- rbind(Turtles1_18_100, Turtles2_18_100, Turtles3_18_100, Turtles4_18_100, Turtles5_18_100)
+df_16_80 <- rbind(Turtles1_16_80, Turtles2_16_80, Turtles3_16_80, Turtles4_16_80, Turtles5_16_80, Turtles6_16_80, Turtles7_16_80, Turtles8_16_80, Turtles9_16_80, Turtles10_16_80)
+df_16_100 <- rbind(Turtles1_16_100, Turtles2_16_100, Turtles3_16_100, Turtles4_16_100, Turtles5_16_100, Turtles6_16_100, Turtles7_16_100, Turtles8_16_100, Turtles9_16_100, Turtles10_16_100)
+df_18_80 <- rbind(Turtles1_18_80, Turtles2_18_80, Turtles3_18_80, Turtles4_18_80, Turtles5_18_80, Turtles6_18_80, Turtles7_18_80, Turtles8_18_80, Turtles9_18_80, Turtles10_18_80)
+df_18_100 <- rbind(Turtles1_18_100, Turtles2_18_100, Turtles3_18_100, Turtles4_18_100, Turtles5_18_100, Turtles6_18_100, Turtles7_18_100, Turtles8_18_100, Turtles9_18_100, Turtles10_18_100)
 ```
 
 # Visualizations
@@ -89,28 +129,28 @@ grid.arrange(
   geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
   labs(title = "Age 16-80", x = "Vote", y = "Frequency") +
   theme_minimal() +
-  scale_fill_manual(values = c("red", "blue", "green", "purple", "orange")) +
+  scale_fill_manual(values = c("red", "blue", "green4", "purple", "darkorange", "black", "lightblue", "hotpink", "yellow", "magenta" )) +
   guides(fill = guide_legend(title = "Simulation")),
   
   ggplot(df_16_100, aes(x = vote, fill = factor(sim))) +
   geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
   labs(title = "Age 16-100", x = "Vote", y = "Frequency") +
   theme_minimal() +
-  scale_fill_manual(values = c("red", "blue", "green", "purple", "orange")) +
+  scale_fill_manual(values = c("red", "blue", "green4", "purple", "darkorange", "black", "lightblue", "hotpink", "yellow", "magenta")) +
   guides(fill = guide_legend(title = "Simulation")),
   
   ggplot(df_18_80, aes(x = vote, fill = factor(sim))) +
   geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
   labs(title = "Age 18-80", x = "Vote", y = "Frequency") +
   theme_minimal() +
-  scale_fill_manual(values = c("red", "blue", "green", "purple", "orange")) +
+  scale_fill_manual(values = c("red", "blue", "green4", "purple", "darkorange", "black", "lightblue", "hotpink", "yellow", "magenta")) +
   guides(fill = guide_legend(title = "Simulation")),
   
   ggplot(df_18_100, aes(x = vote, fill = factor(sim))) +
   geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
   labs(title = "Age 18-100", x = "Vote", y = "Frequency") +
   theme_minimal() +
-  scale_fill_manual(values = c("red", "blue", "green", "purple", "orange")) +
+  scale_fill_manual(values = c("red", "blue", "green4", "purple", "darkorange", "black", "lightblue", "hotpink", "yellow", "magenta")) +
   guides(fill = guide_legend(title = "Simulation")),
   
   nrow = 2, ncol = 2
@@ -342,3 +382,45 @@ nrow = 2, ncol = 2
 
 )
 ```
+Modelling spread of vote for lowered and limited age range 16-80
+```{r}
+# Descriptive Statistics
+summary(df_16_80$vote)
+mean(df_16_80$vote)
+median(df_16_80$vote)
+var(df_16_80$vote)
+sd(df_16_80$vote)
+
+grid.arrange(
+# Histogram
+ggplot(df_16_80, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Histogram of Votes", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+# Box Plot
+ggplot(df_16_80, aes(y = vote)) +
+  geom_boxplot(fill = "red", color = "black", alpha = 0.7) +
+  labs(title = "Box Plot of Votes", y = "Vote") +
+  theme_minimal(),
+
+# Density Plot
+ggplot(df_16_80, aes(x = vote)) +
+  geom_density(fill = "green4", color = "black", alpha = 0.7) +
+  labs(title = "Density Plot of Votes", x = "Vote", y = "Density") +
+  theme_minimal(),
+
+# Violin Plot
+ggplot(df_16_80, aes(x = factor(1), y = vote)) +
+  geom_violin(fill = "yellow", color = "black", alpha = 0.7) +
+  labs(title = "Violin Plot of Votes", x = "", y = "Vote") +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()),
+
+nrow = 2, ncol = 2
+
+)
+```
+
+
+
