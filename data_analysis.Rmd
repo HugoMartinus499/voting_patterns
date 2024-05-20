@@ -8,7 +8,7 @@ date: "2024-05-18"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r, include=FALSE}
 library(ggplot2)
 library(tidyverse)
 library(pastecs)
@@ -30,7 +30,136 @@ library(performance)
 ```
 
 ```{r}
-data <- read.csv("data/dataset.csv")
+data <- read.csv("Data/dataset.csv")
+Turtles1_16_80 <- read.csv("Data/CSV/TURTLES_1_16_80.csv")
+Turtles2_16_80 <- read.csv("Data/CSV/TURTLES_2_16_80.csv")
+Turtles3_16_80 <- read.csv("Data/CSV/TURTLES_3_16_80.csv")
+Turtles4_16_80 <- read.csv("Data/CSV/TURTLES_4_16_80.csv")
+Turtles5_16_80 <- read.csv("Data/CSV/TURTLES_5_16_80.csv")
+Turtles1_16_100 <- read.csv("Data/CSV/TURTLES_1_16_100.csv")
+Turtles2_16_100 <- read.csv("Data/CSV/TURTLES_2_16_100.csv")
+Turtles3_16_100 <- read.csv("Data/CSV/TURTLES_3_16_100.csv")
+Turtles4_16_100 <- read.csv("Data/CSV/TURTLES_4_16_100.csv")
+Turtles5_16_100 <- read.csv("Data/CSV/TURTLES_5_16_100.csv")
+Turtles1_18_80 <- read.csv("Data/CSV/TURTLES_1_18_80.csv")
+Turtles2_18_80 <- read.csv("Data/CSV/TURTLES_2_18_80.csv")
+Turtles3_18_80 <- read.csv("Data/CSV/TURTLES_3_18_80.csv")
+Turtles4_18_80 <- read.csv("Data/CSV/TURTLES_4_18_80.csv")
+Turtles5_18_80 <- read.csv("Data/CSV/TURTLES_5_18_80.csv")
+Turtles1_18_100 <- read.csv("Data/CSV/TURTLES_1_18_100.csv")
+Turtles2_18_100 <- read.csv("Data/CSV/TURTLES_2_18_100.csv")
+Turtles3_18_100 <- read.csv("Data/CSV/TURTLES_3_18_100.csv")
+Turtles4_18_100 <- read.csv("Data/CSV/TURTLES_4_18_100.csv")
+Turtles5_18_100 <- read.csv("Data/CSV/TURTLES_5_18_100.csv")
+Globals <- read.csv("Data/CSV/GLOBALS_1_16_80.csv")
+Patches <- read.csv("Data/CSV/PATCHES_1_16_80.csv")
 ```
 
+
+```{r}
+grid.arrange(
+ggplot(Turtles1_16_80, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Sim 1; 16-80", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles2_16_80, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "red", color = "black", alpha = 0.7) +
+  labs(title = "Sim 2; 16-80", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles3_16_80, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "green4", color = "black", alpha = 0.7) +
+  labs(title = "Sim 3; 16-80", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles4_16_80, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "orange", color = "black", alpha = 0.7) +
+  labs(title = "Sim 4; 16-80", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles5_16_80, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "purple", color = "black", alpha = 0.7) +
+  labs(title = "Sim 5; 16-80", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles1_16_100, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Sim 1; 16-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles2_16_100, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "red", color = "black", alpha = 0.7) +
+  labs(title = "Sim 2; 16-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles3_16_100, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "green4", color = "black", alpha = 0.7) +
+  labs(title = "Sim 3; 16-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles4_16_100, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "orange", color = "black", alpha = 0.7) +
+  labs(title = "Sim 4; 16-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles5_16_100, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "purple", color = "black", alpha = 0.7) +
+  labs(title = "Sim 5; 16-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles1_18_80, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Sim 1; 18-80", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles2_18_80, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "red", color = "black", alpha = 0.7) +
+  labs(title = "Sim 2; 18-80", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles3_18_80, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "green4", color = "black", alpha = 0.7) +
+  labs(title = "Sim 3; 18-80", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles4_18_80, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "orange", color = "black", alpha = 0.7) +
+  labs(title = "Sim 4; 18-80", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles5_18_80, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "purple", color = "black", alpha = 0.7) +
+  labs(title = "Sim 5; 18-80", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles1_18_100, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Sim 1; 18-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles2_18_100, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "red", color = "black", alpha = 0.7) +
+  labs(title = "Sim 2; 18-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles3_18_100, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "green4", color = "black", alpha = 0.7) +
+  labs(title = "Sim 3; 18-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles4_18_100, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "orange", color = "black", alpha = 0.7) +
+  labs(title = "Sim 4; 18-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+ggplot(Turtles5_18_100, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "purple", color = "black", alpha = 0.7) +
+  labs(title = "Sim 5; 18-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+nrow = 4, ncol = 5
+
+)
+```
 
