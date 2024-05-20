@@ -126,28 +126,28 @@ df_18_100 <- rbind(Turtles1_18_100, Turtles2_18_100, Turtles3_18_100, Turtles4_1
 ```{r}
 grid.arrange(
   ggplot(df_16_80, aes(x = vote, fill = factor(sim))) +
-  geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
+  geom_histogram(binwidth = 1, color = "white", alpha = 0.7, position = "dodge") +
   labs(title = "Age 16-80", x = "Vote", y = "Frequency") +
   theme_minimal() +
   scale_fill_manual(values = c("red", "blue", "green4", "purple", "darkorange", "black", "lightblue", "hotpink", "yellow", "magenta" )) +
   guides(fill = guide_legend(title = "Simulation")),
   
   ggplot(df_16_100, aes(x = vote, fill = factor(sim))) +
-  geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
+  geom_histogram(binwidth = 1, color = "white", alpha = 0.7, position = "dodge") +
   labs(title = "Age 16-100", x = "Vote", y = "Frequency") +
   theme_minimal() +
   scale_fill_manual(values = c("red", "blue", "green4", "purple", "darkorange", "black", "lightblue", "hotpink", "yellow", "magenta")) +
   guides(fill = guide_legend(title = "Simulation")),
   
   ggplot(df_18_80, aes(x = vote, fill = factor(sim))) +
-  geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
+  geom_histogram(binwidth = 1, color = "white", alpha = 0.7, position = "dodge") +
   labs(title = "Age 18-80", x = "Vote", y = "Frequency") +
   theme_minimal() +
   scale_fill_manual(values = c("red", "blue", "green4", "purple", "darkorange", "black", "lightblue", "hotpink", "yellow", "magenta")) +
   guides(fill = guide_legend(title = "Simulation")),
   
   ggplot(df_18_100, aes(x = vote, fill = factor(sim))) +
-  geom_histogram(binwidth = 1, color = "black", alpha = 0.7, position = "dodge") +
+  geom_histogram(binwidth = 1, color = "white", alpha = 0.7, position = "dodge") +
   labs(title = "Age 18-100", x = "Vote", y = "Frequency") +
   theme_minimal() +
   scale_fill_manual(values = c("red", "blue", "green4", "purple", "darkorange", "black", "lightblue", "hotpink", "yellow", "magenta")) +
@@ -421,6 +421,62 @@ nrow = 2, ncol = 2
 
 )
 ```
+Joining dataframes for linear model
+```{r}
+df_18_100$age_range <- "18-100"
+df_16_100$age_range <- "16-100"
+df_18_80$age_range <- "18-80"
+df_16_80$age_range <- "16-80"
 
+model1_df <- rbind(df_18_100, df_16_100)
+model2_df <- rbind(df_18_100, df_18_80)
+```
+
+
+
+Modelling impact of age on the vote for hypothesis 1
+```{r}
+
+# Round the vote variable to the nearest integer
+model1_df$vote <- round(model1_df$vote)
+
+# Convert age.category to a factor
+model1_df$age_range <- as.factor(model1_df$age_range)
+
+# Fit a GLM where age.category predicts vote (count outcome)
+model1 <- glm(vote ~ age_range, data = model1_df, family = poisson())
+
+# Check the summary of the model
+summary(model1)
+```
+Modelling impact of age on the vote for hypothesis 2
+```{r}
+
+# Round the vote variable to the nearest integer
+model2_df$vote <- round(model2_df$vote)
+
+# Convert age.category to a factor
+model2_df$age_range <- as.factor(model2_df$age_range)
+
+# Fit a GLM where age.category predicts vote (count outcome)
+model2 <- glm(vote ~ age_range, data = model2_df, family = poisson())
+
+# Check the summary of the model
+summary(model2)
+```
+Density plots of age ranges comparatively
+```{r}
+# Model 1
+ggplot(model1_df, aes(x = vote, fill = age_range)) +
+  geom_density( color = "black", alpha = 0.7) +
+  labs(title = "Density Plot of Votes", x = "Vote", y = "Density") +
+  theme_minimal()
+
+# Model 2
+ggplot(model2_df, aes(x = vote, fill = age_range)) +
+  geom_density( color = "black", alpha = 0.7) +
+  labs(title = "Density Plot of Votes", x = "Vote", y = "Density") +
+  theme_minimal()
+```
 
 
