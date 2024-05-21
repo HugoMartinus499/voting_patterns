@@ -71,7 +71,7 @@ for (name in names(turtles_data)) {
 }
 ```
 
-#Bind df together and add sim number
+#Bind df together and add sim number for first 10 sims
 ```{r}
 Turtles1_16_80$sim <- 1
 Turtles2_16_80$sim <- 2

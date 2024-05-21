@@ -73,3 +73,80 @@ Turtles9_18_100 <- read.csv("Data/CSV/TURTLES_9_18_100.csv")
 Turtles10_18_100 <- read.csv("Data/CSV/TURTLES_10_18_100.csv")
 ```
 
+```{r}
+# Define the ranges for the file names
+range_1 <- 1:10
+range_2 <- c(16, 18)
+range_3 <- c(80, 100)
+
+# Base directory where the CSV files are stored
+base_dir <- "Data/CSV/"
+
+# Initialize an empty list to store the data frames
+turtles_data <- list()
+
+# Loop over the ranges and read the files dynamically
+for (i in range_1) {
+  for (j in range_2) {
+    for (k in range_3) {
+      # Construct the file name
+      file_name <- sprintf("TURTLES_%d_%d_%d.csv", i, j, k)
+      file_path <- file.path(base_dir, file_name)
+      
+      # Read the CSV file and store it in the list
+      if (file.exists(file_path)) {
+        data_name <- sprintf("Turtles%d_%d_%d", i, j, k)
+        temp_data <- read.csv(file_path)
+        temp_data$sim <- i  # Add the sim column
+        turtles_data[[data_name]] <- temp_data
+      } else {
+        message(sprintf("File not found: %s", file_path))
+      }
+    }
+  }
+}
+
+# Combine data frames based on the second and third components of the file names
+combine_data_frames <- function(prefix, range_2, range_3, data_list) {
+  combined_list <- list()
+  
+  for (j in range_2) {
+    for (k in range_3) {
+      pattern <- sprintf("%s_%d_%d", prefix, j, k)
+      frames_to_combine <- grep(pattern, names(data_list), value = TRUE)
+      if (length(frames_to_combine) > 0) {
+        combined_data <- do.call(rbind, data_list[frames_to_combine])
+        combined_list[[sprintf("df_%d_%d", j, k)]] <- combined_data
+      }
+    }
+  }
+  
+  return(combined_list)
+}
+
+# Combine the data frames for TURTLES
+combined_turtles <- combine_data_frames("Turtles", range_2, range_3, turtles_data)
+
+# Assign the combined data frames to variables in the global environment
+for (name in names(combined_turtles)) {
+  assign(name, combined_turtles[[name]])
+}
+
+# Now you can access df_16_80, df_16_100, df_18_80, df_18_100
+if (exists("df_16_80")) {
+  print(head(df_16_80))
+}
+if (exists("df_16_100")) {
+  print(head(df_16_100))
+}
+if (exists("df_18_80")) {
+  print(head(df_18_80))
+}
+if (exists("df_18_100")) {
+  print(head(df_18_100))
+}
+
+
+```
+
+
