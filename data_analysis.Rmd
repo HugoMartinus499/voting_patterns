@@ -32,7 +32,7 @@ library(performance)
 # Load the data
 ```{r}
 # Define the ranges for the file names
-range_1 <- 1:10
+range_1 <- 1:20
 range_2 <- c(16, 18)
 range_3 <- c(80, 100)
 
@@ -114,37 +114,37 @@ Turtles8_18_100$sim <- 8
 Turtles9_18_100$sim <- 9
 Turtles10_18_100$sim <- 10
 
-df_16_80 <- rbind(Turtles1_16_80, Turtles2_16_80, Turtles3_16_80, Turtles4_16_80, Turtles5_16_80, Turtles6_16_80, Turtles7_16_80, Turtles8_16_80, Turtles9_16_80, Turtles10_16_80)
-df_16_100 <- rbind(Turtles1_16_100, Turtles2_16_100, Turtles3_16_100, Turtles4_16_100, Turtles5_16_100, Turtles6_16_100, Turtles7_16_100, Turtles8_16_100, Turtles9_16_100, Turtles10_16_100)
-df_18_80 <- rbind(Turtles1_18_80, Turtles2_18_80, Turtles3_18_80, Turtles4_18_80, Turtles5_18_80, Turtles6_18_80, Turtles7_18_80, Turtles8_18_80, Turtles9_18_80, Turtles10_18_80)
-df_18_100 <- rbind(Turtles1_18_100, Turtles2_18_100, Turtles3_18_100, Turtles4_18_100, Turtles5_18_100, Turtles6_18_100, Turtles7_18_100, Turtles8_18_100, Turtles9_18_100, Turtles10_18_100)
+df_16_80_first10 <- rbind(Turtles1_16_80, Turtles2_16_80, Turtles3_16_80, Turtles4_16_80, Turtles5_16_80, Turtles6_16_80, Turtles7_16_80, Turtles8_16_80, Turtles9_16_80, Turtles10_16_80)
+df_16_100_first10 <- rbind(Turtles1_16_100, Turtles2_16_100, Turtles3_16_100, Turtles4_16_100, Turtles5_16_100, Turtles6_16_100, Turtles7_16_100, Turtles8_16_100, Turtles9_16_100, Turtles10_16_100)
+df_18_80_first10 <- rbind(Turtles1_18_80, Turtles2_18_80, Turtles3_18_80, Turtles4_18_80, Turtles5_18_80, Turtles6_18_80, Turtles7_18_80, Turtles8_18_80, Turtles9_18_80, Turtles10_18_80)
+df_18_100_first10 <- rbind(Turtles1_18_100, Turtles2_18_100, Turtles3_18_100, Turtles4_18_100, Turtles5_18_100, Turtles6_18_100, Turtles7_18_100, Turtles8_18_100, Turtles9_18_100, Turtles10_18_100)
 ```
 
 # Visualizations
 ```{r}
 grid.arrange(
-  ggplot(df_16_80, aes(x = vote, fill = factor(sim))) +
+  ggplot(df_16_80_first10, aes(x = vote, fill = factor(sim))) +
   geom_histogram(binwidth = 1, color = "white", alpha = 0.7, position = "dodge") +
   labs(title = "Age 16-80", x = "Vote", y = "Frequency") +
   theme_minimal() +
   scale_fill_manual(values = c("red", "blue", "green4", "purple", "darkorange", "black", "lightblue", "hotpink", "yellow", "magenta" )) +
   guides(fill = guide_legend(title = "Simulation")),
   
-  ggplot(df_16_100, aes(x = vote, fill = factor(sim))) +
+  ggplot(df_16_100_first10, aes(x = vote, fill = factor(sim))) +
   geom_histogram(binwidth = 1, color = "white", alpha = 0.7, position = "dodge") +
   labs(title = "Age 16-100", x = "Vote", y = "Frequency") +
   theme_minimal() +
   scale_fill_manual(values = c("red", "blue", "green4", "purple", "darkorange", "black", "lightblue", "hotpink", "yellow", "magenta")) +
   guides(fill = guide_legend(title = "Simulation")),
   
-  ggplot(df_18_80, aes(x = vote, fill = factor(sim))) +
+  ggplot(df_18_80_first10, aes(x = vote, fill = factor(sim))) +
   geom_histogram(binwidth = 1, color = "white", alpha = 0.7, position = "dodge") +
   labs(title = "Age 18-80", x = "Vote", y = "Frequency") +
   theme_minimal() +
   scale_fill_manual(values = c("red", "blue", "green4", "purple", "darkorange", "black", "lightblue", "hotpink", "yellow", "magenta")) +
   guides(fill = guide_legend(title = "Simulation")),
   
-  ggplot(df_18_100, aes(x = vote, fill = factor(sim))) +
+  ggplot(df_18_100_first10, aes(x = vote, fill = factor(sim))) +
   geom_histogram(binwidth = 1, color = "white", alpha = 0.7, position = "dodge") +
   labs(title = "Age 18-100", x = "Vote", y = "Frequency") +
   theme_minimal() +
@@ -261,38 +261,89 @@ nrow = 4, ncol = 5
 
 )
 ```
+Binding full df and appending sim column to remaining sims
+```{r}
+Turtles11_16_80$sim <- 11
+Turtles12_16_80$sim <- 12
+Turtles13_16_80$sim <- 13
+Turtles14_16_80$sim <- 14
+Turtles15_16_80$sim <- 15
+Turtles16_16_80$sim <- 16
+Turtles17_16_80$sim <- 17
+Turtles18_16_80$sim <- 18
+Turtles19_16_80$sim <- 19
+Turtles20_16_80$sim <- 20
+Turtles11_18_80$sim <- 11
+Turtles12_18_80$sim <- 12
+Turtles13_18_80$sim <- 13
+Turtles14_18_80$sim <- 14
+Turtles15_18_80$sim <- 15
+Turtles16_18_80$sim <- 16
+Turtles17_18_80$sim <- 17
+Turtles18_18_80$sim <- 18
+Turtles19_18_80$sim <- 19
+Turtles20_18_80$sim <- 20
+Turtles11_16_100$sim <- 11
+Turtles12_16_100$sim <- 12
+Turtles13_16_100$sim <- 13
+Turtles14_16_100$sim <- 14
+Turtles15_16_100$sim <- 15
+Turtles16_16_100$sim <- 16
+Turtles17_16_100$sim <- 17
+Turtles18_16_100$sim <- 18
+Turtles19_16_100$sim <- 19
+Turtles20_16_100$sim <- 20
+Turtles11_18_100$sim <- 11
+Turtles12_18_100$sim <- 12
+Turtles13_18_100$sim <- 13
+Turtles14_18_100$sim <- 14
+Turtles15_18_100$sim <- 15
+Turtles16_18_100$sim <- 16
+Turtles17_18_100$sim <- 17
+Turtles18_18_100$sim <- 18
+Turtles19_18_100$sim <- 19
+Turtles20_18_100$sim <- 20
+
+df_16_80_full <- rbind(Turtles11_16_80, Turtles12_16_80, Turtles13_16_80, Turtles14_16_80, Turtles15_16_80, Turtles16_16_80, Turtles17_16_80, Turtles18_16_80, Turtles19_16_80, Turtles20_16_80, df_16_80_first10)
+df_16_100_full <- rbind(Turtles11_16_100, Turtles12_16_100, Turtles13_16_100, Turtles14_16_100, Turtles15_16_100, Turtles16_16_100, Turtles17_16_100, Turtles18_16_100, Turtles19_16_100, Turtles20_16_100, df_16_100_first10)
+df_18_80_full <- rbind(Turtles11_18_80, Turtles12_18_80, Turtles13_18_80, Turtles14_18_80, Turtles15_18_80, Turtles16_18_80, Turtles17_18_80, Turtles18_18_80, Turtles19_18_80, Turtles20_18_80, df_18_80_first10)
+df_18_100_full <- rbind(Turtles11_18_100, Turtles12_18_100, Turtles13_18_100, Turtles14_18_100, Turtles15_18_100, Turtles16_18_100, Turtles17_18_100, Turtles18_18_100, Turtles19_18_100, Turtles20_18_100, df_18_100_first10)
+```
+
+
+
 #Data analysis
 
 Modelling spread of vote for default age range 18-100
 ```{r}
 # Descriptive Statistics
-summary(df_18_100$vote)
-mean(df_18_100$vote)
-median(df_18_100$vote)
-var(df_18_100$vote)
-sd(df_18_100$vote)
+summary(df_18_100_full$vote)
+mean(df_18_100_full$vote)
+median(df_18_100_full$vote)
+var(df_18_100_full$vote)
+sd(df_18_100_full$vote)
 
 grid.arrange(
 # Histogram
-ggplot(df_18_100, aes(x = vote)) +
+ggplot(df_18_100_full, aes(x = vote)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
   labs(title = "Histogram of Votes", x = "Vote", y = "Frequency") +
   theme_minimal(),
 
 # Box Plot
-ggplot(df_18_100, aes(y = vote)) +
+ggplot(df_18_100_full, aes(y = vote)) +
   geom_boxplot(fill = "red", color = "black", alpha = 0.7) +
   labs(title = "Box Plot of Votes", y = "Vote") +
   theme_minimal(),
 
 # Density Plot
-ggplot(df_18_100, aes(x = vote)) +
+ggplot(df_18_100_full, aes(x = vote)) +
   geom_density(fill = "green4", color = "black", alpha = 0.7) +
   labs(title = "Density Plot of Votes", x = "Vote", y = "Density") +
   theme_minimal(),
 
 # Violin Plot
-ggplot(df_18_100, aes(x = factor(1), y = vote)) +
+ggplot(df_18_100_full, aes(x = factor(1), y = vote)) +
   geom_violin(fill = "yellow", color = "black", alpha = 0.7) +
   labs(title = "Violin Plot of Votes", x = "", y = "Vote") +
   theme_minimal() +
@@ -302,36 +353,37 @@ nrow = 2, ncol = 2
 
 )
 ```
+
 Modelling spread of vote for lowered age range 16-100
 ```{r}
 # Descriptive Statistics
-summary(df_16_100$vote)
-mean(df_16_100$vote)
-median(df_16_100$vote)
-var(df_16_100$vote)
-sd(df_16_100$vote)
+summary(df_16_100_full$vote)
+mean(df_16_100_full$vote)
+median(df_16_100_full$vote)
+var(df_16_100_full$vote)
+sd(df_16_100_full$vote)
 
 grid.arrange(
 # Histogram
-ggplot(df_16_100, aes(x = vote)) +
+ggplot(df_16_100_full, aes(x = vote)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
   labs(title = "Histogram of Votes", x = "Vote", y = "Frequency") +
   theme_minimal(),
 
 # Box Plot
-ggplot(df_16_100, aes(y = vote)) +
+ggplot(df_16_100_full, aes(y = vote)) +
   geom_boxplot(fill = "red", color = "black", alpha = 0.7) +
   labs(title = "Box Plot of Votes", y = "Vote") +
   theme_minimal(),
 
 # Density Plot
-ggplot(df_16_100, aes(x = vote)) +
+ggplot(df_16_100_full, aes(x = vote)) +
   geom_density(fill = "green4", color = "black", alpha = 0.7) +
   labs(title = "Density Plot of Votes", x = "Vote", y = "Density") +
   theme_minimal(),
 
 # Violin Plot
-ggplot(df_16_100, aes(x = factor(1), y = vote)) +
+ggplot(df_16_100_full, aes(x = factor(1), y = vote)) +
   geom_violin(fill = "yellow", color = "black", alpha = 0.7) +
   labs(title = "Violin Plot of Votes", x = "", y = "Vote") +
   theme_minimal() +
@@ -341,36 +393,37 @@ nrow = 2, ncol = 2
 
 )
 ```
+
 Modelling spread of vote for limited age range 18-80
 ```{r}
 # Descriptive Statistics
-summary(df_18_80$vote)
-mean(df_18_80$vote)
-median(df_18_80$vote)
-var(df_18_80$vote)
-sd(df_18_80$vote)
+summary(df_18_80_full$vote)
+mean(df_18_80_full$vote)
+median(df_18_80_full$vote)
+var(df_18_80_full$vote)
+sd(df_18_80_full$vote)
 
 grid.arrange(
 # Histogram
-ggplot(df_18_80, aes(x = vote)) +
+ggplot(df_18_80_full, aes(x = vote)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
   labs(title = "Histogram of Votes", x = "Vote", y = "Frequency") +
   theme_minimal(),
 
 # Box Plot
-ggplot(df_18_80, aes(y = vote)) +
+ggplot(df_18_80_full, aes(y = vote)) +
   geom_boxplot(fill = "red", color = "black", alpha = 0.7) +
   labs(title = "Box Plot of Votes", y = "Vote") +
   theme_minimal(),
 
 # Density Plot
-ggplot(df_18_80, aes(x = vote)) +
+ggplot(df_18_80_full, aes(x = vote)) +
   geom_density(fill = "green4", color = "black", alpha = 0.7) +
   labs(title = "Density Plot of Votes", x = "Vote", y = "Density") +
   theme_minimal(),
 
 # Violin Plot
-ggplot(df_18_80, aes(x = factor(1), y = vote)) +
+ggplot(df_18_80_full, aes(x = factor(1), y = vote)) +
   geom_violin(fill = "yellow", color = "black", alpha = 0.7) +
   labs(title = "Violin Plot of Votes", x = "", y = "Vote") +
   theme_minimal() +
@@ -380,36 +433,37 @@ nrow = 2, ncol = 2
 
 )
 ```
+
 Modelling spread of vote for lowered and limited age range 16-80
 ```{r}
 # Descriptive Statistics
-summary(df_16_80$vote)
-mean(df_16_80$vote)
-median(df_16_80$vote)
-var(df_16_80$vote)
-sd(df_16_80$vote)
+summary(df_16_80_full$vote)
+mean(df_16_80_full$vote)
+median(df_16_80_full$vote)
+var(df_16_80_full$vote)
+sd(df_16_80_full$vote)
 
 grid.arrange(
 # Histogram
-ggplot(df_16_80, aes(x = vote)) +
+ggplot(df_16_80_full, aes(x = vote)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
   labs(title = "Histogram of Votes", x = "Vote", y = "Frequency") +
   theme_minimal(),
 
 # Box Plot
-ggplot(df_16_80, aes(y = vote)) +
+ggplot(df_16_80_full, aes(y = vote)) +
   geom_boxplot(fill = "red", color = "black", alpha = 0.7) +
   labs(title = "Box Plot of Votes", y = "Vote") +
   theme_minimal(),
 
 # Density Plot
-ggplot(df_16_80, aes(x = vote)) +
+ggplot(df_16_80_full, aes(x = vote)) +
   geom_density(fill = "green4", color = "black", alpha = 0.7) +
   labs(title = "Density Plot of Votes", x = "Vote", y = "Density") +
   theme_minimal(),
 
 # Violin Plot
-ggplot(df_16_80, aes(x = factor(1), y = vote)) +
+ggplot(df_16_80_full, aes(x = factor(1), y = vote)) +
   geom_violin(fill = "yellow", color = "black", alpha = 0.7) +
   labs(title = "Violin Plot of Votes", x = "", y = "Vote") +
   theme_minimal() +
@@ -419,20 +473,22 @@ nrow = 2, ncol = 2
 
 )
 ```
+
 Joining dataframes for linear model
 ```{r}
-df_18_100$age_range <- "18-100"
-df_16_100$age_range <- "16-100"
-df_18_80$age_range <- "18-80"
-df_16_80$age_range <- "16-80"
+df_18_100_full$age_range <- "18-100"
+df_16_100_full$age_range <- "16-100"
+df_18_80_full$age_range <- "18-80"
+df_16_80_full$age_range <- "16-80"
 
-model1_df <- rbind(df_18_100, df_16_100)
-model2_df <- rbind(df_18_100, df_18_80)
+model1_df <- rbind(df_18_100_full, df_16_100_full)
+model2_df <- rbind(df_18_100_full, df_18_80_full)
+model3_df <- rbind(df_18_100_full, df_16_80_full)
 ```
 
 
 
-Modelling impact of age on the vote for hypothesis 1
+#Modelling impact of age on the vote for hypothesis 1
 ```{r}
 
 # Round the vote variable to the nearest integer
@@ -447,6 +503,7 @@ model1 <- glm(vote ~ age_range, data = model1_df, family = poisson())
 # Check the summary of the model
 summary(model1)
 ```
+
 Modelling impact of age on the vote for hypothesis 2
 ```{r}
 
@@ -462,19 +519,46 @@ model2 <- glm(vote ~ age_range, data = model2_df, family = poisson())
 # Check the summary of the model
 summary(model2)
 ```
+Impact of doing both
+```{r}
+# Round the vote variable to the nearest integer
+model3_df$vote <- round(model3_df$vote)
+
+# Convert age.category to a factor
+model3_df$age_range <- as.factor(model3_df$age_range)
+
+# Fit a GLM where age.category predicts vote (count outcome)
+model3 <- glm(vote ~ age_range, data = model3_df, family = poisson())
+
+# Check the summary of the model
+summary(model3)
+```
+
+
 Density plots of age ranges comparatively
 ```{r}
+grid.arrange(
 # Model 1
 ggplot(model1_df, aes(x = vote, fill = age_range)) +
   geom_density( color = "black", alpha = 0.7) +
   labs(title = "Density Plot of Votes", x = "Vote", y = "Density") +
-  theme_minimal()
+  theme_minimal(),
 
 # Model 2
 ggplot(model2_df, aes(x = vote, fill = age_range)) +
   geom_density( color = "black", alpha = 0.7) +
   labs(title = "Density Plot of Votes", x = "Vote", y = "Density") +
-  theme_minimal()
+  theme_minimal(),
+
+# Model 3
+ggplot(model3_df, aes(x = vote, fill = age_range)) +
+  geom_density( color = "black", alpha = 0.7) +
+  labs(title = "Density Plot of Votes", x = "Vote", y = "Density") +
+  theme_minimal(),
+
+nrow = 2, ncol = 2
+
+)
 ```
 
 
