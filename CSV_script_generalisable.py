@@ -10,7 +10,7 @@ csv_dir = os.path.join(base_dir, "CSV")
 os.makedirs(csv_dir, exist_ok=True)
 
 # Define the ranges for the file names
-range_1 = range(1, 11)  # 1 to 10
+range_1 = range(1, 21)  # 1 to 10
 range_2 = [16, 18]
 range_3 = [80, 100]
 
