@@ -503,6 +503,28 @@ model1 <- glm(vote ~ age_range, data = model1_df, family = poisson())
 # Check the summary of the model
 summary(model1)
 ```
+Checking for overdispersion
+```{r}
+
+# Calculate the ratio of residual deviance to degrees of freedom
+ratio1 <- model1$deviance / model1$df.residual
+ratio1
+
+```
+Ratio is higher than 1, meaning that a negative binomial is more in order
+```{r}
+# Load the MASS package
+library(MASS)
+
+# Fit the Negative Binomial regression model
+nb_model1 <- glm.nb(vote ~ age_range, data = model1_df)
+
+# Check the summary of the model
+summary(nb_model1)
+
+```
+
+
 
 Modelling impact of age on the vote for hypothesis 2
 ```{r}
@@ -519,8 +541,34 @@ model2 <- glm(vote ~ age_range, data = model2_df, family = poisson())
 # Check the summary of the model
 summary(model2)
 ```
+Checking for overdispersion
+```{r}
+
+# Calculate the ratio of residual deviance to degrees of freedom
+ratio2 <- model2$deviance / model2$df.residual
+ratio2
+
+```
+
+Ratio is higher than 1, meaning that a negative binomial is more in order
+```{r}
+# Load the MASS package
+library(MASS)
+
+# Fit the Negative Binomial regression model
+nb_model2 <- glm.nb(vote ~ age_range, data = model2_df)
+
+# Check the summary of the model
+summary(nb_model2)
+
+```
+
+
+
+
 Impact of doing both
 ```{r}
+
 # Round the vote variable to the nearest integer
 model3_df$vote <- round(model3_df$vote)
 
@@ -532,6 +580,28 @@ model3 <- glm(vote ~ age_range, data = model3_df, family = poisson())
 
 # Check the summary of the model
 summary(model3)
+```
+
+Checking for overdispersion
+```{r}
+
+# Calculate the ratio of residual deviance to degrees of freedom
+ratio3 <- model3$deviance / model3$df.residual
+ratio3
+
+```
+
+Ratio is higher than 1, meaning that a negative binomial is more in order
+```{r}
+# Load the MASS package
+library(MASS)
+
+# Fit the Negative Binomial regression model
+nb_model3 <- glm.nb(vote ~ age_range, data = model3_df)
+
+# Check the summary of the model
+summary(nb_model3)
+
 ```
 
 

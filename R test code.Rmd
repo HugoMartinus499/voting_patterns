@@ -149,4 +149,18 @@ if (exists("df_18_100")) {
 
 ```
 
+```{r}
+
+# Round the vote variable to the nearest integer
+model2_df$vote <- round(model2_df$vote)
+
+# Convert age.category to a factor
+model2_df$age_range <- as.factor(model2_df$age_range)
+
+# Fit a GLM where age.category predicts vote (count outcome)
+model2 <- glm(vote ~ age_range, data = model2_df, family = poisson())
+
+# Check the summary of the model
+summary(model2)
+```
 
