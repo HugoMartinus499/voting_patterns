@@ -476,10 +476,10 @@ nrow = 2, ncol = 2
 
 Joining dataframes for linear model
 ```{r}
-df_18_100_full$age_range <- "18-100"
-df_16_100_full$age_range <- "16-100"
-df_18_80_full$age_range <- "18-80"
-df_16_80_full$age_range <- "16-80"
+df_18_100_full$age_range <- 1
+df_16_100_full$age_range <- 2
+df_18_80_full$age_range <- 3
+df_16_80_full$age_range <- 4
 
 model1_df <- rbind(df_18_100_full, df_16_100_full)
 model2_df <- rbind(df_18_100_full, df_18_80_full)
