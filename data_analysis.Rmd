@@ -544,7 +544,7 @@ summary(model2)
 ```
 Checking for overdispersion
 ```{r}
-dispersiontest(model1)
+dispersiontest(model2)
 
 # Calculate the ratio of residual deviance to degrees of freedom
 ratio2 <- model2$deviance / model2$df.residual
@@ -586,7 +586,7 @@ summary(model3)
 
 Checking for overdispersion
 ```{r}
-dispersiontest(model1)
+dispersiontest(model3)
 
 # Calculate the ratio of residual deviance to degrees of freedom
 ratio3 <- model3$deviance / model3$df.residual
