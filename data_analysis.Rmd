@@ -505,7 +505,8 @@ summary(model1)
 ```
 Checking for overdispersion
 ```{r}
-
+pacman::p_load(AER)
+dispersiontest(model1)
 # Calculate the ratio of residual deviance to degrees of freedom
 ratio1 <- model1$deviance / model1$df.residual
 ratio1
@@ -543,6 +544,7 @@ summary(model2)
 ```
 Checking for overdispersion
 ```{r}
+dispersiontest(model1)
 
 # Calculate the ratio of residual deviance to degrees of freedom
 ratio2 <- model2$deviance / model2$df.residual
@@ -584,6 +586,7 @@ summary(model3)
 
 Checking for overdispersion
 ```{r}
+dispersiontest(model1)
 
 # Calculate the ratio of residual deviance to degrees of freedom
 ratio3 <- model3$deviance / model3$df.residual
