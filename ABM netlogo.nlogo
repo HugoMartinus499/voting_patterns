@@ -1188,10 +1188,10 @@ count turtles with [Socialdemokratiet]
 11
 
 MONITOR
-801
-631
-863
-676
+1192
+587
+1254
+632
 Radikale
 count turtles with [Radikale]
 2
@@ -1199,10 +1199,10 @@ count turtles with [Radikale]
 11
 
 MONITOR
-861
-631
-945
-676
+1252
+587
+1336
+632
 Moderaterne
 count turtles with [Moderaterne]
 2
@@ -1210,10 +1210,10 @@ count turtles with [Moderaterne]
 11
 
 MONITOR
-943
-631
-1000
-676
+1334
+587
+1391
+632
 DF
 count turtles with [DF]
 2
@@ -1221,10 +1221,10 @@ count turtles with [DF]
 11
 
 MONITOR
-997
-631
-1129
-676
+1388
+587
+1520
+632
 Kristendemokraterne
 count turtles with [Kristendemokraterne]
 2
@@ -1232,10 +1232,10 @@ count turtles with [Kristendemokraterne]
 11
 
 MONITOR
-1128
-631
-1193
-676
+1519
+587
+1584
+632
 Venstre
 count turtles with [Venstre]
 2
@@ -1243,10 +1243,10 @@ count turtles with [Venstre]
 11
 
 MONITOR
-801
-674
-945
-719
+1583
+587
+1727
+632
 Danmarksdemokraterne
 count turtles with [Danmarksdemokraterne]
 2
@@ -1254,10 +1254,10 @@ count turtles with [Danmarksdemokraterne]
 11
 
 MONITOR
-943
-674
-1019
-719
+1725
+587
+1801
+632
 Konservative
 count turtles with [Konservative]
 2
@@ -1265,10 +1265,10 @@ count turtles with [Konservative]
 11
 
 MONITOR
-1017
-674
-1101
-719
+1799
+587
+1883
+632
 Nye Borgerlige
 count turtles with [Nye-Borgerlige]
 2
@@ -1276,10 +1276,10 @@ count turtles with [Nye-Borgerlige]
 11
 
 MONITOR
-1099
-674
-1193
-719
+1881
+587
+1975
+632
 Liberal Alliance
 count turtles with [LA]
 2
