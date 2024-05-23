@@ -164,3 +164,62 @@ model2 <- glm(vote ~ age_range, data = model2_df, family = poisson())
 summary(model2)
 ```
 
+```{r}
+
+# Round the vote variable to the nearest integer
+df_18_100_full$vote <- round(df_18_100_full$vote)
+
+# Convert age.category to a factor
+df_18_100_full$age.category <- as.factor(df_18_100_full$age.category)
+
+# Fit a GLM where age.category predicts vote (count outcome)
+model18_100 <- lm(vote ~ age.category, data = df_18_100_full, family = poisson())
+
+# Check the summary of the model
+summary(model18_100)
+```
+
+```{r}
+
+# Round the vote variable to the nearest integer
+df_16_100_full$vote <- round(df_16_100_full$vote)
+
+# Convert age.category to a factor
+df_16_100_full$age.category <- as.factor(df_16_100_full$age.category)
+
+# Fit a GLM where age.category predicts vote (count outcome)
+model16_100 <- lm(vote ~ age.category, data = df_16_100_full, family = poisson())
+
+# Check the summary of the model
+summary(model16_100)
+```
+
+```{r}
+
+# Round the vote variable to the nearest integer
+df_18_80_full$vote <- round(df_18_80_full$vote)
+
+# Convert age.category to a factor
+df_18_80_full$age.category <- as.factor(df_18_80_full$age.category)
+
+# Fit a GLM where age.category predicts vote (count outcome)
+model18_80 <- lm(vote ~ age.category, data = df_18_80_full, family = poisson())
+
+# Check the summary of the model
+summary(model18_80)
+```
+
+```{r}
+
+# Round the vote variable to the nearest integer
+df_16_80_full$vote <- round(df_16_80_full$vote)
+
+# Convert age.category to a factor
+df_16_80_full$age.category <- as.factor(df_16_80_full$age.category)
+
+# Fit a GLM where age.category predicts vote (count outcome)
+model16_80 <- lm(vote ~ age.category, data = df_16_80_full, family = poisson())
+
+# Check the summary of the model
+summary(model16_80)
+```
