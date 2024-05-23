@@ -56,5 +56,4 @@ Mesa: https://www.youtube.com/watch?v=1wa9lysIaD8
 - [x] Extract data from simulations
 - [x] Visualize data in R
 - [x] Make csv writing script better, more generalisable
-- [ ] Add age into the dataframe and use it as a predictor in the model
-- [ ] Data analysis
+- [x] Data analysis
