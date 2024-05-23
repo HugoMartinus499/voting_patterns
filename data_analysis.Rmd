@@ -835,4 +835,23 @@ nrow = 2, ncol = 2
 )
 ```
 
+Hypothesis 2 rapid change and dynasty check
+```{r}
+grid.arrange(
+  
+  ggplot(df_18_100_full, aes(x = vote, fill = factor(sim))) +
+  geom_histogram(binwidth = 1, color = "white", alpha = 0.7, position = "dodge") +
+  labs(title = "Age 16-80", x = "Vote", y = "Frequency") +
+  theme_minimal() +
+  guides(fill = guide_legend(title = "Simulation")),
+  
+  ggplot(df_18_80_full, aes(x = vote, fill = factor(sim))) +
+  geom_histogram(binwidth = 1, color = "white", alpha = 0.7, position = "dodge") +
+  labs(title = "Age 16-100", x = "Vote", y = "Frequency") +
+  theme_minimal() +
+  guides(fill = guide_legend(title = "Simulation")),
+  
+  nrow = 1, ncol = 2
+)
+```
 
