@@ -626,7 +626,7 @@ mean(df_16_80_full$vote)
 sd(df_16_80_full$vote)
 ```
 
-Spread of each age range
+Spread for model 1
 
 ```{r}
 grid.arrange(
@@ -680,6 +680,41 @@ ggplot(df_16_100_full, aes(x = factor(1), y = vote)) +
   theme_minimal() +
   theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()),
 
+
+nrow = 2, ncol = 4
+
+)
+```
+Spread for model 2
+
+```{r}
+
+grid.arrange(
+# Histogram
+ggplot(df_18_100_full, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Age range: 18-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+# Box Plot
+ggplot(df_18_100_full, aes(y = vote)) +
+  geom_boxplot(fill = "red", color = "black", alpha = 0.7) +
+  labs(title = "Age range: 18-100", y = "Vote") +
+  theme_minimal(),
+
+# Density Plot
+ggplot(df_18_100_full, aes(x = vote)) +
+  geom_density(fill = "green4", color = "black", alpha = 0.7) +
+  labs(title = "Age range: 18-100", x = "Vote", y = "Density") +
+  theme_minimal(),
+
+# Violin Plot
+ggplot(df_18_100_full, aes(x = factor(1), y = vote)) +
+  geom_violin(fill = "yellow", color = "black", alpha = 0.7) +
+  labs(title = "Age range: 18-100", x = "", y = "Vote") +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()),
+
 # Histogram
 ggplot(df_18_80_full, aes(x = vote)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
@@ -702,6 +737,42 @@ ggplot(df_18_80_full, aes(x = vote)) +
 ggplot(df_18_80_full, aes(x = factor(1), y = vote)) +
   geom_violin(fill = "yellow", color = "black", alpha = 0.7) +
   labs(title = "Age range: 18-80", x = "", y = "Vote") +
+  theme_minimal() +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()),
+
+
+nrow = 2, ncol = 4
+
+)
+
+```
+
+Spread for model 3
+```{r}
+
+grid.arrange(
+# Histogram
+ggplot(df_18_100_full, aes(x = vote)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Age range: 18-100", x = "Vote", y = "Frequency") +
+  theme_minimal(),
+
+# Box Plot
+ggplot(df_18_100_full, aes(y = vote)) +
+  geom_boxplot(fill = "red", color = "black", alpha = 0.7) +
+  labs(title = "Age range: 18-100", y = "Vote") +
+  theme_minimal(),
+
+# Density Plot
+ggplot(df_18_100_full, aes(x = vote)) +
+  geom_density(fill = "green4", color = "black", alpha = 0.7) +
+  labs(title = "Age range: 18-100", x = "Vote", y = "Density") +
+  theme_minimal(),
+
+# Violin Plot
+ggplot(df_18_100_full, aes(x = factor(1), y = vote)) +
+  geom_violin(fill = "yellow", color = "black", alpha = 0.7) +
+  labs(title = "Age range: 18-100", x = "", y = "Vote") +
   theme_minimal() +
   theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()),
 
@@ -730,10 +801,12 @@ ggplot(df_16_80_full, aes(x = factor(1), y = vote)) +
   theme_minimal() +
   theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()),
 
-nrow = 4, ncol = 4
+
+nrow = 2, ncol = 4
 
 )
 ```
+
 
 
 Density plots of age ranges comparatively
