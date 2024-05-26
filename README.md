@@ -26,6 +26,7 @@ The assumptions of this project include:
 - Lack of expertise in ABM
 - Data (Lack of data, data for only Denmark)
 - Causal explanatory power
+- Simplification
 
 ### ABM Modelling languages + packages
 **Python**
